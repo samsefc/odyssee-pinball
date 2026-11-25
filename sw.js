@@ -1,5 +1,5 @@
 // Odyssée Pinball — service worker (hors ligne + mises à jour)
-const VERSION = 'odyssee-v1';
+const VERSION = 'odyssee-v2';
 const SHELL = ['./', './index.html', './manifest.webmanifest',
   './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-512.png', './icons/apple-touch-icon.png'];
 
