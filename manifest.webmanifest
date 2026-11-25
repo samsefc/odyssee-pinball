@@ -1,7 +1,7 @@
 {
   "name": "Odyssée Pinball",
   "short_name": "Odyssée",
-  "description": "Flipper arcade : 4 tables, missions, multiball.",
+  "description": "Flipper arcade : 5 tables, missions, multiball.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",
