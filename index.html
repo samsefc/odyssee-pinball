@@ -169,7 +169,7 @@ h1{font:400 clamp(30px,8vw,52px)/1.02 'Audiowide',sans-serif;margin:6px 0 4px;te
 <script>
 {
 /* ================= LANGUE ================= */
-const I18N={"en": {"sub": "Five tables, missions, one physics.", "gravLbl": "Gravity (lower = the ball falls more slowly)", "gN": "Normal", "gD": "Soft", "gTD": "Very soft", "snd": "Sound", "mus": "Music", "lit": "Dynamic lights", "lit2": "Lights", "coll": "Creature collection", "grav": "Gravity", "resume": "Resume", "restart": "Restart", "change": "Change table", "again": "Play again", "close": "Close", "pause": "Pause", "hintL": "◀ Touch here<br>left flipper", "hintR": "Touch here ▶<br>right flipper · hold = launch", "over": "Game over", "newrec": "New record!", "rank": "Rank", "mis1": "mission", "misN": "missions", "cr1": "creature", "crN": "creatures", "record": "Record", "oldrec": "Previous record", "recNone": "Record: —", "balls": "balls", "saveS": "ball save {n} s", "noSave": "no ball save", "creaturesM": "creatures", "collT": "Collection", "collN": "{a} / {b} creatures caught on the Creatures table", "helpTouch": "Touch the <b>left</b> or <b>right half</b> of the screen for the flippers. Hold right and release to launch.", "helpKey": "Flippers: <kbd>←</kbd> <kbd>→</kbd> or <kbd>Z</kbd> <kbd>M</kbd> · Launch: hold <kbd>Space</kbd> · Pause: <kbd>P</kbd>", "helpMis": "Missions start by themselves on Creatures and Nebula; on Volcano, Castle and Abyss, make a ramp or shoot the Crater / Oubliette / Trench to start one. Chain ramps within 6 s for combos: 3 = jackpot, 5 = Ramp Frenzy. On Castle, missions and ramps wake the dragon: shoot the Oubliette to fight it (4 ramps in a row wake it at once). They give points, multiball or an extra ball. At launch, aim for the blinking lane: skill shot. Side kickbacks relight after a while or with missions."}, "fr": {"sub": "Cinq tables, des missions, une seule physique.", "gravLbl": "Gravité (moins forte = la bille descend plus lentement)", "gN": "Normale", "gD": "Douce", "gTD": "Très douce", "snd": "Sons", "mus": "Musique", "lit": "Lumières dynamiques", "lit2": "Lumières", "coll": "Collection de créatures", "grav": "Gravité", "resume": "Reprendre", "restart": "Recommencer", "change": "Changer de table", "again": "Rejouer", "close": "Fermer", "pause": "Pause", "hintL": "◀ Toucher ici<br>flipper gauche", "hintR": "Toucher ici ▶<br>flipper droit · maintenir = lancer", "over": "Partie terminée", "newrec": "Nouveau record !", "rank": "Grade", "mis1": "mission", "misN": "missions", "cr1": "créature", "crN": "créatures", "record": "Record", "oldrec": "Ancien record", "recNone": "Record : —", "balls": "billes", "saveS": "sauvetage {n} s", "noSave": "aucun sauvetage", "creaturesM": "créatures", "collT": "Collection", "collN": "{a} / {b} créatures attrapées sur la table Créatures", "helpTouch": "Touche la <b>moitié gauche</b> ou <b>droite</b> de l’écran pour les flippers. Maintiens à droite puis relâche pour lancer.", "helpKey": "Flippers : <kbd>←</kbd> <kbd>→</kbd> ou <kbd>Z</kbd> <kbd>M</kbd> · Lanceur : maintiens <kbd>Espace</kbd> · Pause : <kbd>P</kbd>", "helpMis": "Missions : elles démarrent toutes seules sur Créatures et Nébuleuse ; sur Volcan, Château fort et Abysses, passe une rampe ou tire dans le Cratère / l’Oubliette / la Fosse pour en lancer une. Enchaîne les rampes en moins de 6 s : 3 = jackpot, 5 = Ramp Frenzy. Sur le Château fort, missions et rampes réveillent le dragon : tire dans l’Oubliette pour le combattre (4 rampes d’affilée le réveillent d’un coup). Elles donnent des points, un multiball ou une bille en plus. Au lancement, vise le couloir qui clignote : skill shot. Les sauvetages sur les côtés se rallument avec le temps ou les missions."}};const DMDEN=[["^BILLE (\\d+)/(\\d+)$", "BALL $1/$2"], ["BILLE EN PLUS", "EXTRA BALL"], ["BILLE SAUVÉE", "BALL SAVED"], ["BANQUE COMPLÈTE", "BANK COMPLETE"], ["COLLECTION COMPLÈTE", "COLLECTION COMPLETE"], ["FIN DU MULTIBALL", "MULTIBALL OVER"], ["^GRADE : ", "RANK: "], ["KICKBACKS ALLUMÉS", "KICKBACKS LIT"], ["KICKBACK RECHARGÉ", "KICKBACK READY"], ["LA CRÉATURE S’EST ENFUIE", "THE CREATURE RAN AWAY"], ["^MISSION : ", "MISSION: "], ["MISSION RATÉE", "MISSION FAILED"], ["MISSION RÉUSSIE", "MISSION COMPLETE"], ["JACKPOT AU ", "JACKPOT AT "], ["PRESQUE ! PLUS FORT", "ALMOST! HARDER"], ["SUIS LES FLÈCHES ROUGES", "FOLLOW THE RED ARROWS"], ["SUPER COULOIRS", "SUPER LANES"], ["TOURBILLON", "WHIRLPOOL"], ["UNE CRÉATURE APPARAÎT", "A CREATURE APPEARS"], ["VITE ! TIRE DANS LE TERRIER", "QUICK! SHOOT THE BURROW"], ["ÉRUPTION", "ERUPTION"], [" ATTRAPÉ", " CAUGHT"], ["NOUVEAU", "NEW"], ["BUMPERS NIVEAU", "BUMPERS LEVEL"], ["ENCORE (\\d+) BUMPERS?", "$1 MORE BUMPERS"], ["MULTIPLICATEUR", "MULTIPLIER"], ["RAMPE OU (.*) = MISSION", "RAMP OR $1 = MISSION"], ["SUPER ORBITE", "SUPER ORBIT"], ["^ORBITE$", "ORBIT"], ["MAINTIENS À DROITE POUR LANCER", "HOLD RIGHT TO LAUNCH"], ["MAINTIENS ESPACE POUR LANCER", "HOLD SPACE TO LAUNCH"], ["TOUCHE LES CHAMPIGNONS", "HIT THE MUSHROOMS"], ["TIRE DANS LE TERRIER !", "SHOOT THE BURROW!"], ["· BILLE ", "· BALL "], ["CHOISIS UNE TABLE", "PICK A TABLE"], ["TOUCHE (\\d+) BUMPERS", "HIT $1 BUMPERS"], ["FAIS (\\d+) RAMPES", "MAKE $1 RAMPS"], ["FAIS (\\d+) ORBITES", "MAKE $1 ORBITS"], ["(\\d+) TOURS DE SPINNER", "$1 SPINNER SPINS"], ["FAIS TOMBER LES CIBLES", "KNOCK DOWN THE TARGETS"], ["TOUCHE (\\d+) CIBLES FIXES", "HIT $1 TARGETS"], ["ALLUME LES 3 COULOIRS", "LIGHT THE 3 LANES"], ["(\\d+) COUPS DE SLINGSHOT", "$1 SLINGSHOT HITS"], ["PASSE (\\d+) FOIS EN COULOIR", "ROLL OVER $1 LANES"], ["TROU NOIR", "BLACK HOLE"], ["CRATÈRE", "CRATER"], ["FOSSE", "TRENCH"], ["TERRIER", "BURROW"], ["PONT DE BOIS", "WOODEN BRIDGE"], ["TROU DE VER", "WORMHOLE"], ["COULÉE DE LAVE", "LAVA FLOW"], ["COURANT PROFOND", "DEEP CURRENT"], ["CRÉATURES", "CREATURES"], ["NÉBULEUSE", "NEBULA"], ["\\bVOLCAN\\b", "VOLCANO"], ["\\bABYSSES\\b", "ABYSS"], ["PETIT EXPLORATEUR", "LITTLE EXPLORER"], ["GRAND DRESSEUR DE CRÉATURES", "CREATURE MASTER"], ["EXPLORATEUR", "EXPLORER"], ["PISTEUR", "TRACKER"], ["GARDIEN DU FEU", "FIRE KEEPER"], ["GARDIEN", "GUARDIAN"], ["ENSEIGNE", "ENSIGN"], ["CAPITAINE", "CAPTAIN"], ["COMMANDANT", "COMMANDER"], ["AMIRAL", "ADMIRAL"], ["APPRENTI", "APPRENTICE"], ["FORGERON", "BLACKSMITH"], ["SEIGNEUR DES LAVES", "LAVA LORD"], ["MAÎTRE DU VOLCAN", "VOLCANO MASTER"], ["MOUSSE", "DECKHAND"], ["PLONGEUR", "DIVER"], ["LÉGENDE DES ABYSSES", "LEGEND OF THE DEEP"], ["^BLASON : ÉPÉE", "CREST: SWORD"], ["^BLASON : TOUR", "CREST: TOWER"], ["^BLASON : HERSE", "CREST: PORTCULLIS"], ["^BLASON : COURONNE", "CREST: CROWN"], ["TOUR COMPLÈTE", "TOWER COMPLETE"], ["ROYAUME CONQUIS", "KINGDOM CONQUERED"], ["SUPER HERSE", "SUPER PORTCULLIS"], ["FAIS (\\d+) HERSES", "PORTCULLIS ×$1"], ["^HERSE", "PORTCULLIS"], ["ALLUME LA TOUR", "LIGHT T-O-U-R"], ["PONT-LEVIS", "DRAWBRIDGE"], ["DONJON", "KEEP"], ["JACKPOT RAMPES", "RAMP JACKPOT"], ["ENCHAÎNEMENT", "RAMP COMBO"], ["CHÂTEAU FORT", "CASTLE"], ["ÉCUYER", "SQUIRE"], ["CHEVALIER", "KNIGHT"], ["COMTE", "COUNT"], ["\\bDUC\\b", "DUKE"], ["\\bROI\\b", "KING"], ["SIÈGE", "SIEGE"], ["LE DRAGON APPROCHE · OUBLIETTE", "THE DRAGON IS COMING · OUBLIETTE"], ["COMBAT CONTRE LE DRAGON", "DRAGON BATTLE"], ["UN CHEVALIER ENTRE EN JEU", "A KNIGHT JOINS THE FIGHT"], ["DRAGON VAINCU", "DRAGON SLAIN"], ["LE DRAGON S'ENVOLE", "THE DRAGON FLEES"]].map(([a,b])=>[new RegExp(a),b]);const NMEN={"Créatures": "Creatures", "Nébuleuse": "Nebula", "Volcan": "Volcano", "Abysses": "Abyss", "Très facile": "Very easy", "Facile": "Easy", "Moyen": "Medium", "Difficile": "Hard", "Pour Louis": "For Louis", "TROU NOIR": "BLACK HOLE", "CRATÈRE": "CRATER", "FOSSE": "TRENCH", "TERRIER": "BURROW", "RAMPE": "RAMP", "ORBITE": "ORBIT", "Petit explorateur": "Little explorer", "Explorateur": "Explorer", "Pisteur": "Tracker", "Gardien": "Guardian", "Grand dresseur de créatures": "Creature master", "Cadet": "Cadet", "Enseigne": "Ensign", "Lieutenant": "Lieutenant", "Capitaine": "Captain", "Commandant": "Commander", "Amiral": "Admiral", "Apprenti": "Apprentice", "Forgeron": "Blacksmith", "Gardien du feu": "Fire keeper", "Seigneur des laves": "Lava lord", "Maître du volcan": "Volcano master", "Mousse": "Deckhand", "Plongeur": "Diver", "Légende des abysses": "Legend of the deep", "Château fort": "Castle", "OUBLIETTE": "OUBLIETTE", "HERSE": "PORTCULLIS", "Écuyer": "Squire", "Chevalier": "Knight", "Baron": "Baron", "Comte": "Count", "Duc": "Duke", "Roi": "King"};
+const I18N={"en": {"sub": "Five tables, missions, one physics.", "gravLbl": "Gravity (lower = the ball falls more slowly)", "gN": "Normal", "gD": "Soft", "gTD": "Very soft", "snd": "Sound", "mus": "Music", "lit": "Dynamic lights", "lit2": "Lights", "coll": "Creature collection", "grav": "Gravity", "resume": "Resume", "restart": "Restart", "change": "Change table", "again": "Play again", "close": "Close", "pause": "Pause", "hintL": "◀ Touch here<br>left flipper", "hintR": "Touch here ▶<br>right flipper · hold = launch", "over": "Game over", "newrec": "New record!", "rank": "Rank", "mis1": "mission", "misN": "missions", "cr1": "creature", "crN": "creatures", "record": "Record", "oldrec": "Previous record", "recNone": "Record: —", "balls": "balls", "saveS": "ball save {n} s", "noSave": "no ball save", "creaturesM": "creatures", "collT": "Collection", "collN": "{a} / {b} creatures caught on the Creatures table", "helpTouch": "Touch the <b>left</b> or <b>right half</b> of the screen for the flippers. Hold right and release to launch.", "helpKey": "Flippers: <kbd>←</kbd> <kbd>→</kbd> or <kbd>Z</kbd> <kbd>M</kbd> · Launch: hold <kbd>Space</kbd> · Pause: <kbd>P</kbd>", "helpMis": "Missions start by themselves on Creatures and Nebula; on Volcano, Castle and Abyss, make a ramp or shoot the Crater / Oubliette / Trench to start one. Chain ramps within 6 s for combos: 3 = jackpot, 5 = Ramp Frenzy. On Nebula, Volcano and Castle, missions and ramps wake a boss (mothership, lava golem, dragon): shoot the hole to fight it (4 ramps in a row wake it at once). They give points, multiball or an extra ball. At launch, aim for the blinking lane: skill shot. Side kickbacks relight after a while or with missions."}, "fr": {"sub": "Cinq tables, des missions, une seule physique.", "gravLbl": "Gravité (moins forte = la bille descend plus lentement)", "gN": "Normale", "gD": "Douce", "gTD": "Très douce", "snd": "Sons", "mus": "Musique", "lit": "Lumières dynamiques", "lit2": "Lumières", "coll": "Collection de créatures", "grav": "Gravité", "resume": "Reprendre", "restart": "Recommencer", "change": "Changer de table", "again": "Rejouer", "close": "Fermer", "pause": "Pause", "hintL": "◀ Toucher ici<br>flipper gauche", "hintR": "Toucher ici ▶<br>flipper droit · maintenir = lancer", "over": "Partie terminée", "newrec": "Nouveau record !", "rank": "Grade", "mis1": "mission", "misN": "missions", "cr1": "créature", "crN": "créatures", "record": "Record", "oldrec": "Ancien record", "recNone": "Record : —", "balls": "billes", "saveS": "sauvetage {n} s", "noSave": "aucun sauvetage", "creaturesM": "créatures", "collT": "Collection", "collN": "{a} / {b} créatures attrapées sur la table Créatures", "helpTouch": "Touche la <b>moitié gauche</b> ou <b>droite</b> de l’écran pour les flippers. Maintiens à droite puis relâche pour lancer.", "helpKey": "Flippers : <kbd>←</kbd> <kbd>→</kbd> ou <kbd>Z</kbd> <kbd>M</kbd> · Lanceur : maintiens <kbd>Espace</kbd> · Pause : <kbd>P</kbd>", "helpMis": "Missions : elles démarrent toutes seules sur Créatures et Nébuleuse ; sur Volcan, Château fort et Abysses, passe une rampe ou tire dans le Cratère / l’Oubliette / la Fosse pour en lancer une. Enchaîne les rampes en moins de 6 s : 3 = jackpot, 5 = Ramp Frenzy. Sur Nébuleuse, Volcan et Château fort, missions et rampes réveillent un boss (vaisseau mère, golem de lave, dragon) : tire dans le trou pour le combattre (4 rampes d’affilée le réveillent d’un coup). Elles donnent des points, un multiball ou une bille en plus. Au lancement, vise le couloir qui clignote : skill shot. Les sauvetages sur les côtés se rallument avec le temps ou les missions."}};const DMDEN=[["^BILLE (\\d+)/(\\d+)$", "BALL $1/$2"], ["BILLE EN PLUS", "EXTRA BALL"], ["BILLE SAUVÉE", "BALL SAVED"], ["BANQUE COMPLÈTE", "BANK COMPLETE"], ["COLLECTION COMPLÈTE", "COLLECTION COMPLETE"], ["FIN DU MULTIBALL", "MULTIBALL OVER"], ["^GRADE : ", "RANK: "], ["KICKBACKS ALLUMÉS", "KICKBACKS LIT"], ["KICKBACK RECHARGÉ", "KICKBACK READY"], ["LA CRÉATURE S’EST ENFUIE", "THE CREATURE RAN AWAY"], ["^MISSION : ", "MISSION: "], ["MISSION RATÉE", "MISSION FAILED"], ["MISSION RÉUSSIE", "MISSION COMPLETE"], ["JACKPOT AU ", "JACKPOT AT "], ["PRESQUE ! PLUS FORT", "ALMOST! HARDER"], ["SUIS LES FLÈCHES ROUGES", "FOLLOW THE RED ARROWS"], ["SUPER COULOIRS", "SUPER LANES"], ["TOURBILLON", "WHIRLPOOL"], ["UNE CRÉATURE APPARAÎT", "A CREATURE APPEARS"], ["VITE ! TIRE DANS LE TERRIER", "QUICK! SHOOT THE BURROW"], ["ÉRUPTION", "ERUPTION"], [" ATTRAPÉ", " CAUGHT"], ["NOUVEAU", "NEW"], ["BUMPERS NIVEAU", "BUMPERS LEVEL"], ["ENCORE (\\d+) BUMPERS?", "$1 MORE BUMPERS"], ["MULTIPLICATEUR", "MULTIPLIER"], ["RAMPE OU (.*) = MISSION", "RAMP OR $1 = MISSION"], ["SUPER ORBITE", "SUPER ORBIT"], ["^ORBITE$", "ORBIT"], ["MAINTIENS À DROITE POUR LANCER", "HOLD RIGHT TO LAUNCH"], ["MAINTIENS ESPACE POUR LANCER", "HOLD SPACE TO LAUNCH"], ["TOUCHE LES CHAMPIGNONS", "HIT THE MUSHROOMS"], ["TIRE DANS LE TERRIER !", "SHOOT THE BURROW!"], ["· BILLE ", "· BALL "], ["CHOISIS UNE TABLE", "PICK A TABLE"], ["TOUCHE (\\d+) BUMPERS", "HIT $1 BUMPERS"], ["FAIS (\\d+) RAMPES", "MAKE $1 RAMPS"], ["FAIS (\\d+) ORBITES", "MAKE $1 ORBITS"], ["(\\d+) TOURS DE SPINNER", "$1 SPINNER SPINS"], ["FAIS TOMBER LES CIBLES", "KNOCK DOWN THE TARGETS"], ["TOUCHE (\\d+) CIBLES FIXES", "HIT $1 TARGETS"], ["ALLUME LES 3 COULOIRS", "LIGHT THE 3 LANES"], ["(\\d+) COUPS DE SLINGSHOT", "$1 SLINGSHOT HITS"], ["PASSE (\\d+) FOIS EN COULOIR", "ROLL OVER $1 LANES"], ["TROU NOIR", "BLACK HOLE"], ["CRATÈRE", "CRATER"], ["FOSSE", "TRENCH"], ["TERRIER", "BURROW"], ["PONT DE BOIS", "WOODEN BRIDGE"], ["TROU DE VER", "WORMHOLE"], ["COULÉE DE LAVE", "LAVA FLOW"], ["COURANT PROFOND", "DEEP CURRENT"], ["CRÉATURES", "CREATURES"], ["NÉBULEUSE", "NEBULA"], ["\\bVOLCAN\\b", "VOLCANO"], ["\\bABYSSES\\b", "ABYSS"], ["PETIT EXPLORATEUR", "LITTLE EXPLORER"], ["GRAND DRESSEUR DE CRÉATURES", "CREATURE MASTER"], ["EXPLORATEUR", "EXPLORER"], ["PISTEUR", "TRACKER"], ["GARDIEN DU FEU", "FIRE KEEPER"], ["GARDIEN", "GUARDIAN"], ["ENSEIGNE", "ENSIGN"], ["CAPITAINE", "CAPTAIN"], ["COMMANDANT", "COMMANDER"], ["AMIRAL", "ADMIRAL"], ["APPRENTI", "APPRENTICE"], ["FORGERON", "BLACKSMITH"], ["SEIGNEUR DES LAVES", "LAVA LORD"], ["MAÎTRE DU VOLCAN", "VOLCANO MASTER"], ["MOUSSE", "DECKHAND"], ["PLONGEUR", "DIVER"], ["LÉGENDE DES ABYSSES", "LEGEND OF THE DEEP"], ["^BLASON : ÉPÉE", "CREST: SWORD"], ["^BLASON : TOUR", "CREST: TOWER"], ["^BLASON : HERSE", "CREST: PORTCULLIS"], ["^BLASON : COURONNE", "CREST: CROWN"], ["TOUR COMPLÈTE", "TOWER COMPLETE"], ["ROYAUME CONQUIS", "KINGDOM CONQUERED"], ["SUPER HERSE", "SUPER PORTCULLIS"], ["FAIS (\\d+) HERSES", "PORTCULLIS ×$1"], ["^HERSE", "PORTCULLIS"], ["ALLUME LA TOUR", "LIGHT T-O-U-R"], ["PONT-LEVIS", "DRAWBRIDGE"], ["DONJON", "KEEP"], ["JACKPOT RAMPES", "RAMP JACKPOT"], ["ENCHAÎNEMENT", "RAMP COMBO"], ["CHÂTEAU FORT", "CASTLE"], ["ÉCUYER", "SQUIRE"], ["CHEVALIER", "KNIGHT"], ["COMTE", "COUNT"], ["\\bDUC\\b", "DUKE"], ["\\bROI\\b", "KING"], ["SIÈGE", "SIEGE"], ["LE DRAGON APPROCHE · OUBLIETTE", "THE DRAGON IS COMING · OUBLIETTE"], ["COMBAT CONTRE LE DRAGON", "DRAGON BATTLE"], ["UN CHEVALIER ENTRE EN JEU", "A KNIGHT JOINS THE FIGHT"], ["DRAGON VAINCU", "DRAGON SLAIN"], ["LE DRAGON S'ENVOLE", "THE DRAGON FLEES"], ["LE VOLCAN GRONDE", "THE VOLCANO RUMBLES"], ["LE GOLEM DE LAVE SURGIT", "THE LAVA GOLEM RISES"], ["LAVE ARDENTE · 2E BILLE", "BLAZING LAVA · 2ND BALL"], ["CIBLES COMPLÈTES", "TARGETS COMPLETE"], ["GOLEM DÉTRUIT", "GOLEM DESTROYED"], ["LE GOLEM RETOURNE DANS LA LAVE", "THE GOLEM SINKS BACK INTO THE LAVA"], ["SIGNAL EXTRATERRESTRE", "ALIEN SIGNAL"], ["INVASION ! LE VAISSEAU MÈRE ATTAQUE", "INVASION! THE MOTHERSHIP ATTACKS"], ["RENFORT · 2E BILLE", "BACKUP · 2ND BALL"], ["VAISSEAU DÉTRUIT", "MOTHERSHIP DESTROYED"], ["LE VAISSEAU SE TÉLÉPORTE", "THE MOTHERSHIP WARPS AWAY"], ["^VAISSEAU", "MOTHERSHIP"]].map(([a,b])=>[new RegExp(a),b]);const NMEN={"Créatures": "Creatures", "Nébuleuse": "Nebula", "Volcan": "Volcano", "Abysses": "Abyss", "Très facile": "Very easy", "Facile": "Easy", "Moyen": "Medium", "Difficile": "Hard", "Pour Louis": "For Louis", "TROU NOIR": "BLACK HOLE", "CRATÈRE": "CRATER", "FOSSE": "TRENCH", "TERRIER": "BURROW", "RAMPE": "RAMP", "ORBITE": "ORBIT", "Petit explorateur": "Little explorer", "Explorateur": "Explorer", "Pisteur": "Tracker", "Gardien": "Guardian", "Grand dresseur de créatures": "Creature master", "Cadet": "Cadet", "Enseigne": "Ensign", "Lieutenant": "Lieutenant", "Capitaine": "Captain", "Commandant": "Commander", "Amiral": "Admiral", "Apprenti": "Apprentice", "Forgeron": "Blacksmith", "Gardien du feu": "Fire keeper", "Seigneur des laves": "Lava lord", "Maître du volcan": "Volcano master", "Mousse": "Deckhand", "Plongeur": "Diver", "Légende des abysses": "Legend of the deep", "Château fort": "Castle", "OUBLIETTE": "OUBLIETTE", "HERSE": "PORTCULLIS", "Écuyer": "Squire", "Chevalier": "Knight", "Baron": "Baron", "Comte": "Count", "Duc": "Duke", "Roi": "King"};
 let LANG='fr';try{LANG=localStorage.getItem('odyssee-lang')||((navigator.language||'fr').startsWith('fr')?'fr':'en')}catch(e){}
 function tr(k,o){let v=(I18N[LANG]&&I18N[LANG][k])||I18N.fr[k]||k;if(o)for(const q in o)v=v.split('{'+q+'}').join(o[q]);return v}
 function nm(x){return LANG==='en'?(NMEN[x]||x):x}
@@ -256,7 +256,7 @@ const TABLES=[
   ramps:[{pts:[[208,478],[200,420],[176,340],[146,262],[172,182],[234,146],[290,154],[345,185],[395,240],[424,320],[430,430],[420,520],[406,650],[398,732]],w:46,min:60,exitSpd:380,name:'PONT DE BOIS',pts10:5000}],
   window:{x:302,y:488,r:30},
   flippers:[{x:418,y:600,right:true}]},
- {id:'nebula',amb:0.46,name:'Nébuleuse',diff:'Facile',level:1,balls:5,save:10,kickRe:45,kickBy:'stand',po:86,ow:24,centerPost:true,kickback:true,extraAt:250000,letters:['I','O','N'],mtime:90,mscale:1,autoMis:true,
+ {id:'nebula',amb:0.46,name:'Nébuleuse',diff:'Facile',level:1,balls:5,save:10,kickRe:45,kickBy:'stand',po:86,ow:24,centerPost:true,kickback:true,extraAt:250000,letters:['I','O','N'],mtime:90,mscale:1,autoMis:true,boss:'ufo',
   ranks:['Cadet','Enseigne','Lieutenant','Capitaine','Commandant','Amiral'],
   missions:['bump','ramp','stand','lanes','spin','sling','roll'],
   theme:{bg1:'#05082a',bg2:'#1c0b4d',a1:'#38d9ff',a2:'#ff4fd8',a3:'#ffe45c',rubber:'#ff6be0',plastic:'#7b5cff',dmd:'#5fe0ff',ramp:'#5fe0ff'},
@@ -266,7 +266,7 @@ const TABLES=[
   spinners:[{x:362,y:508,w:30,noPosts:true}],
   flippers:[{x:50,y:560,right:false}],
   ramps:[{pts:[[372,476],[390,424],[400,374],[394,332]],spiral:{cx:380,cy:264,r:44,turns:1.25,rise:40,dir:1},exit:[[318,176],[268,146],[200,150],[140,190],[100,260],[82,340],[78,440],[74,520],[61,650],[67,732]],w:42,min:80,exitSpd:380,name:'TROU DE VER',pts10:10000}]},
- {id:'volcan',amb:0.42,name:'Volcan',diff:'Moyen',level:2,logoY:700,balls:3,save:10,po:92,ow:32,centerPost:false,kickback:true,kickRe:60,kickBy:'mission',extraAt:600000,letters:['F','E','U'],mtime:70,mscale:1.3,
+ {id:'volcan',amb:0.42,name:'Volcan',diff:'Moyen',level:2,logoY:700,balls:3,save:10,po:92,ow:32,centerPost:false,kickback:true,kickRe:60,kickBy:'mission',extraAt:600000,letters:['F','E','U'],mtime:70,mscale:1.3,boss:'golem',geyser:true,
   ranks:['Apprenti','Forgeron','Gardien du feu','Seigneur des laves','Maître du volcan'],
   missions:['ramp','bump','drops','orbit','stand','spin','lanes'],
   theme:{bg1:'#120403',bg2:'#4a1005',a1:'#ff7a1a',a2:'#ffd23f',a3:'#ff3b2f',rubber:'#ffb13b',plastic:'#c2340f',dmd:'#ff8a2a',ramp:'#ffb13b'},
@@ -292,7 +292,7 @@ const TABLES=[
   flippers:[{x:50,y:574,right:false,len:66}],
   scoops:[{x:340,y:448,dx:0.309,dy:-0.951,len:54,hw:24,name:'HERSE',out:1500,ej:[-0.37,0.929]}],
   slanes:{xs:[50,96,372,412],y:226,guides:[76,116,352,392,432],y0:204,y1:248,letters:['T','O','U','R']},
-  blason:{x:234,y:548},dragon:true,
+  blason:{x:234,y:548},boss:'dragon',
   ramps:[
    {pts:[[156,488],[152,440],[148,406],[136,384],[118,382],[104,402],[96,460],[90,540],[78,650],[71,732]],w:40,min:150,exitSpd:380,name:'PONT-LEVIS',pts10:6000},
    {pts:[[138,322],[142,272],[156,236],[190,200],[234,186],[280,196],[320,226],[350,270],[374,320],[394,380],[404,460],[404,540],[403,650],[397,732]],w:38,min:150,exitSpd:380,name:'DONJON',pts10:8000}]},
@@ -348,7 +348,7 @@ function buildTable(def){
 for(const w of def.walls||[])poly(w,{e:0.4});
  T.posts.push({x:442,y:690,r:6,e:0.7},{x:26,y:690,r:6,e:0.7});
  T.flippers=[mkF(Lx,Ly,false,FL_LEN,true),mkF(2*CX-Lx,Ly,true,FL_LEN,true),...(def.flippers||[]).map(f=>mkF(f.x,f.y,f.right,f.len||56))];
- for(const f of T.flippers)if(!f.main&&f.guard)poly(f.guard,{e:0.3});
+ for(const f of T.flippers)if(!f.main){if(f.guard)poly(f.guard,{e:0.3});else if(f.px<90)poly([[20,f.py-44],[f.px+2,f.py-f.r1-3]],{e:0.3});else if(f.px>380)poly([[448,f.py-44],[f.px-2,f.py-f.r1-3]],{e:0.3})}
  if(def.centerPost)T.posts.push({x:CX,y:866+DY,r:6,e:0.5,center:true});
  for(const x of [144,204,264,324])poly([[x,88],[x,128]],{e:0.4});
  T.lanes=[174,234,294].map((x,i)=>({x,y:110,lit:false,cd:0,ch:def.letters[i]}));
@@ -544,7 +544,7 @@ function serve(){const b=newBall(LANE_X,PLUNGER_Y-R-2);G.balls.push(b);G.skill=M
 function msg(t,d=1.8,flash=false){G.msgs.push({t,d,flash});if(G.msgs.length>4)G.msgs.shift()}
 function add(p,x,y){p=Math.round(p);G.score+=p;if(x!=null)floats.push({x,y,t:'+'+fmt(p),life:0.9});
  if(T.def.extraAt&&!G.extraGiven&&G.score>=T.def.extraAt){G.extraGiven=true;giveExtra()}}
-function giveExtra(){G.extra++;msg('BILLE EN PLUS !',2.5,true);SFX.extra();flashGI(T.th.a3,1.2)}
+function giveExtra(){if((G.extraN||0)>=(T.def.level>=2?2:3)){const v=100000*(1+T.def.level);add(v);msg('BILLE EN PLUS (MAX) · +'+fmt(v),2.5,true);SFX.jackpot();return}G.extraN=(G.extraN||0)+1;G.extra++;msg('BILLE EN PLUS !',2.5,true);SFX.extra();flashGI(T.th.a3,1.2)}
 function flashGI(col,t=0.8){G.flash=t;G.flashCol=col}
 function burst(x,y,col,n=10,sp=260){for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,v=sp*(0.3+Math.random());parts.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:0.35+Math.random()*0.3,max:0.65,col,s:1+Math.random()*2})}}
 
@@ -553,12 +553,12 @@ function misStart(){const d=T.def,type=d.missions[G.misIdx%d.missions.length],cy
  const n=['drops','lanes','slanes'].includes(type)?1+cyc:Math.max(1,Math.round(n0*d.mscale*(1+cyc*0.5)));
  G.mis={type,n,c:0,t:d.mtime,txt:txt.replace('{n}',n)};G.misIdx++;msg('MISSION : '+G.mis.txt,3,true);setTimeout(()=>{if(G&&G.mis)msg('SUIS LES FLÈCHES ROUGES',1.6)},3100);SFX.missionGo();flashGI(T.th.a1,0.6)}
 function misEvent(type,k=1){const m=G.mis;if(!m||m.type!==type)return;m.c+=k;if(m.c>=m.n)misComplete()}
-function misComplete(){if(T.def.dragon)setTimeout(()=>{if(G&&state==='play')dragonCharge(2)},2400);if(T.def.kickBy==='mission'&&T.kicks.some(q=>!q.lit)){T.kicks.forEach(q=>{q.lit=true;q.rt=0});setTimeout(()=>{if(G&&state==='play')msg('KICKBACKS ALLUMÉS',1.6)},2600)}const k=++G.misDone,pts=25000*k*(1+T.def.level*0.5);add(pts);G.mis=null;G.misCool=2.5;SFX.missionOk();flashGI(T.th.a3,1.5);shake=6;
+function misComplete(){if(T.def.geyser){geyser(T.saucer.x,T.saucer.y,260,1.8);setTimeout(()=>{if(G&&state==='play'){geyser(CX,520,300,2);SFX.arp([48,55,60],'sawtooth',0.08,0.2)}},350)}if(T.def.boss)setTimeout(()=>{if(G&&state==='play')dragonCharge(2)},2400);if(T.def.kickBy==='mission'&&T.kicks.some(q=>!q.lit)){T.kicks.forEach(q=>{q.lit=true;q.rt=0});setTimeout(()=>{if(G&&state==='play')msg('KICKBACKS ALLUMÉS',1.6)},2600)}const k=++G.misDone,pts=25000*k*(1+T.def.level*0.5);add(pts);G.mis=null;G.misCool=2.5;SFX.missionOk();flashGI(T.th.a3,1.5);shake=6;
  const rk=T.def.ranks[Math.min(T.def.ranks.length-1,k)];
  if(k%3===2&&!G.multiball){msg(`MISSION RÉUSSIE · MULTIBALL !`,3,true);setTimeout(()=>{if(G&&state==='play')startMultiball()},600)}
  else if(k%3===0){msg('MISSION RÉUSSIE · BILLE EN PLUS',3,true);setTimeout(()=>{if(G&&state==='play')giveExtra()},700)}
  else msg(`MISSION RÉUSSIE · +${fmt(pts)}`,3,true);
- setTimeout(()=>{if(G&&state==='play')msg('GRADE : '+rk.toUpperCase(),2.5)},1200)}
+ if(k<T.def.ranks.length)setTimeout(()=>{if(G&&state==='play')msg('GRADE : '+rk.toUpperCase(),2.5)},1200)}
 function rampStreak(st,b){const lv=1+T.def.level*0.5;
  if(st===3){const j=50000*lv;setTimeout(()=>{if(!G||state!=='play')return;add(j,b.x,b.y-40);msg('JACKPOT RAMPES '+fmt(j),2.4,true);SFX.jackpot();flashGI(T.th.ramp,1.2);shake=6;if(T.def.blason)blasonQ(3)},450)}
  else if(st===5){G.frenzyT=30;setTimeout(()=>{if(!G||state!=='play')return;if(!G.frenzyGiven){G.frenzyGiven=true;msg('RAMP FRENZY · BILLE EN PLUS !',3,true);giveExtra()}else{const j=150000*lv;add(j);msg('RAMP FRENZY '+fmt(j),3,true);SFX.jackpot()}flashGI(T.th.a3,2);shake=10;burst(b.x,b.y,T.th.a3,40,420)},450)}
@@ -578,24 +578,28 @@ function scoopEject(sc,b){const v=(sc.out||1700)*Math.sqrt(GMUL);b.x=sc.E[0]-sc.
  SFX.kick();noise({t:0.12,v:0.4,f:3000,q:4});burst(sc.M[0],sc.M[1],T.th.a1,14,320);shake=5}
 /* ---- Dragon (Château fort) ---- */
 const DR_NEED=8;
-function dragonCharge(n){if(!T.def.dragon||G.dr||G.drReady)return;G.drQ=(G.drQ||0)+n;
- if(G.drQ>=DR_NEED){G.drReady=true;G.drQ=DR_NEED;msg('LE DRAGON APPROCHE · OUBLIETTE !',3,true);roar(0.6);flashGI('#ff5a1f',1.5)}
- else setTimeout(()=>{if(G&&state==='play'&&!G.dr)msg(`DRAGON ${G.drQ}/${DR_NEED}`,1.2)},700)}
+const BOSS={dragon:{n:'DRAGON',come:'LE DRAGON APPROCHE',start:'COMBAT CONTRE LE DRAGON !',help:'UN CHEVALIER ENTRE EN JEU',win:'DRAGON VAINCU !',flee:"LE DRAGON S'ENVOLE…",y:330,amp:92,col:'#ff5a1f'},
+ golem:{n:'GOLEM',come:'LE VOLCAN GRONDE',start:'LE GOLEM DE LAVE SURGIT !',help:'LAVE ARDENTE · 2E BILLE',win:'GOLEM DÉTRUIT !',flee:'LE GOLEM RETOURNE DANS LA LAVE…',y:314,amp:70,col:'#ff7a1a'},
+ ufo:{n:'VAISSEAU',come:'SIGNAL EXTRATERRESTRE',start:'INVASION ! LE VAISSEAU MÈRE ATTAQUE',help:'RENFORT · 2E BILLE',win:'VAISSEAU DÉTRUIT !',flee:'LE VAISSEAU SE TÉLÉPORTE…',y:332,amp:100,col:'#7dfcff'}};
+const BC=()=>BOSS[T.def.boss]||BOSS.dragon;
+function dragonCharge(n){if(!G)return;if(!T.def.boss||G.dr||G.drReady)return;G.drQ=(G.drQ||0)+n;
+ if(G.drQ>=DR_NEED){G.drReady=true;G.drQ=DR_NEED;msg(`${BC().come} · ${T.saucer.name} !`,3,true);roar(0.6);flashGI(BC().col,1.5)}
+ else setTimeout(()=>{if(G&&state==='play'&&!G.dr)msg(`${BC().n} ${G.drQ}/${DR_NEED}`,1.2)},700)}
 function roar(v=1){noise({t:1.2,v:0.5*v,f:500,f2:90,q:1.5});tone({type:'sawtooth',f:140,f2:55,t:1.1,v:0.22*v,rev:0.5});tone({type:'square',f:95,f2:40,t:0.9,v:0.12*v,delay:0.1})}
-function dragonStart(){const lv=G.drLv||0;G.drReady=false;G.drQ=0;G.dr={x:CX,y:330,hp:16+lv*5,max:16+lv*5,t:60,ph:0,cd:0,hit:0,fire:0,fireT:5,dead:0};
- msg('COMBAT CONTRE LE DRAGON !',3.2,true);roar(1);shake=12;flashGI('#ff5a1f',2.5);if(!G.multiball){G.multiball=true;G.autoQ=1;G.autoT=1.2;msg('UN CHEVALIER ENTRE EN JEU',2.4)}if(T.def.save>0)G.saveT=Math.max(G.saveT,10)}
+function dragonStart(){const lv=G.drLv||0;G.drReady=false;G.drQ=0;const bc=BC();G.dr={type:T.def.boss,x:CX,y:bc.y,hp:20+lv*6,max:20+lv*6,t:60,ph:0,cd:0,hit:0,fire:0,fireT:5,dead:0};
+ msg(bc.start,3.2,true);roar(1);shake=12;flashGI(bc.col,2.5);if(T.def.geyser){geyser(CX,bc.y+40,300,2);geyser(T.saucer.x,T.saucer.y,240,1.8);geyser(CX-110,560,200,1.6);geyser(CX+110,560,200,1.6)}if(!G.multiball){G.multiball=true;G.autoQ=1;G.autoT=1.2;msg(bc.help,2.4)}if(T.def.save>0)G.saveT=Math.max(G.saveT,10)}
 function dragonDmg(n,x,y,src){const d=G.dr;if(!d||d.dead)return;G.drSrc=G.drSrc||{};G.drSrc[src]=(G.drSrc[src]||0)+n;d.hp-=n;d.hit=0.35;add(5000*n*(1+(G.drLv||0)),x??d.x,(y??d.y)-30);burst(d.x,d.y,'#ff8a2a',10+n*4,340);
  noise({t:0.25,v:0.4,f:1200,f2:300,q:2});
- if(d.hp<=0){d.hp=0;d.dead=2.2;const lv=G.drLv||0,j=250000*(1+lv);add(j);msg('DRAGON VAINCU ! '+fmt(j),4,true);SFX.jackpot();roar(1.2);shake=14;flashGI('#ffd75a',3);burst(d.x,d.y,'#ffd75a',60,520);
+ if(d.hp<=0){d.hp=0;d.dead=2.2;const lv=G.drLv||0,j=250000*(1+lv);add(j);msg(BC().win+' '+fmt(j),4,true);if(T.def.geyser)for(let k=0;k<5;k++)geyser(80+k*77,520+Math.random()*120,260,2);SFX.jackpot();roar(1.2);shake=14;flashGI('#ffd75a',3);burst(d.x,d.y,'#ffd75a',60,520);
   if(!G.drBeat){G.drBeat=true;setTimeout(()=>{if(G&&state==='play')giveExtra()},1800)}G.drLv=lv+1}}
 function dragonUpdate(dt){const d=G.dr;if(!d)return;d.ph+=dt;d.hit=Math.max(0,d.hit-dt);d.cd-=dt;
- if(d.dead){d.dead-=dt;d.y-=dt*60;if(d.dead<=0)G.dr=null;return}
- d.t-=dt;d.x=CX+Math.sin(d.ph*0.8)*92;d.y=330+Math.sin(d.ph*1.6)*14;
- d.fireT-=dt;if(d.fireT<=0){d.fireT=6+Math.random()*3;d.fire=1.4;roar(0.5)}if(d.fire>0){d.fire-=dt;if(Math.random()<0.6)parts.push({x:d.x+(Math.random()-0.5)*10,y:d.y+30,vx:(Math.random()-0.5)*160,vy:260+Math.random()*220,life:0.7,max:0.7,s:3+Math.random()*4,col:Math.random()<0.5?'#ff7a1a':'#ffd23f'})}
- if(d.t<=0){msg("LE DRAGON S'ENVOLE…",2.6,true);G.drQ=Math.floor(DR_NEED/2);d.dead=1.5;d.hp=Math.max(d.hp,1)}}
+ if(d.dead){d.dead-=dt;if(d.type!=='golem')d.y-=dt*(d.type==='ufo'?140:60);if(d.dead<=0)G.dr=null;return}
+ const bc=BOSS[d.type]||BOSS.dragon;d.t-=dt;d.x=CX+Math.sin(d.ph*(d.type==='golem'?0.55:0.8))*bc.amp;d.y=bc.y+Math.sin(d.ph*1.6)*(d.type==='golem'?6:14);
+ d.fireT-=dt;if(d.fireT<=0){d.fireT=6+Math.random()*3;d.fire=1.4;roar(0.5);if(d.type==='golem'){shake=8;for(let k=0;k<3;k++)geyser(70+Math.random()*330,460+Math.random()*200,220,1.5)}}if(d.fire>0){d.fire-=dt;if(d.type==='dragon'&&Math.random()<0.6)parts.push({x:d.x+(Math.random()-0.5)*10,y:d.y+30,vx:(Math.random()-0.5)*160,vy:260+Math.random()*220,life:0.7,max:0.7,s:3+Math.random()*4,col:Math.random()<0.5?'#ff7a1a':'#ffd23f'})}
+ if(d.t<=0){msg(BC().flee,2.6,true);G.drQ=Math.floor(DR_NEED/2);d.dead=1.5;d.hp=Math.max(d.hp,1)}}
 function dragonCollide(b){const d=G.dr;if(!d||d.dead||d.cd>0)return;const dx=b.x-d.x,dy=b.y-d.y,dist=Math.hypot(dx,dy),R0=30;
  if(dist<R0+11&&dist>0.1){const nx=dx/dist,ny=dy/dist;b.x=d.x+nx*(R0+11.5);b.y=d.y+ny*(R0+11.5);const vn=b.vx*nx+b.vy*ny;if(vn<0){b.vx-=2*vn*nx;b.vy-=2*vn*ny}b.vx+=nx*700;b.vy+=ny*700;d.cd=0.6;dragonDmg(2,b.x,b.y,'body');shake=6}}
-function drawDragon(c,now){const d=G&&G.dr;if(!d)return;const k=d.hit>0?1:0,fl=Math.sin(d.ph*9),a=d.dead?Math.max(0,d.dead/2):1;
+function drawDragon(c,now){const d=G&&G.dr;if(!d)return;if(d.type==='golem')return drawGolem(c,now,d);if(d.type==='ufo')return drawUfo(c,now,d);const k=d.hit>0?1:0,fl=Math.sin(d.ph*9),a=d.dead?Math.max(0,d.dead/2):1;
  c.save();c.globalAlpha=a;c.translate(d.x,d.y);c.scale(1.25,1.25);
  // ombre
  c.fillStyle='rgba(0,0,0,.35)';c.beginPath();c.ellipse(8,60,46,12,0,0,7);c.fill();
@@ -615,6 +619,39 @@ function drawDragon(c,now){const d=G&&G.dr;if(!d)return;const k=d.hit>0?1:0,fl=M
  c.restore();
  // barre de vie
  if(!d.dead){const w=96,x0=d.x-w/2,y0=d.y-62;c.fillStyle='rgba(0,0,0,.7)';c.fillRect(x0-2,y0-2,w+4,10);c.fillStyle=d.hp/d.max>0.35?'#ff7a1a':'#ff2a1f';c.fillRect(x0,y0,w*d.hp/d.max,6);c.strokeStyle='#ffd75a';c.lineWidth=1;c.strokeRect(x0-2,y0-2,w+4,10)}}
+function bossBar(c,d,col){if(d.dead)return;const w=96,x0=d.x-w/2,y0=d.y-64;c.fillStyle='rgba(0,0,0,.7)';c.fillRect(x0-2,y0-2,w+4,10);c.fillStyle=d.hp/d.max>0.35?col:'#ff2a1f';c.fillRect(x0,y0,w*d.hp/d.max,6);c.strokeStyle='#fff3c0';c.lineWidth=1;c.strokeRect(x0-2,y0-2,w+4,10)}
+function drawGolem(c,now,d){const k=d.hit>0,a=d.dead?Math.max(0,d.dead/2):1,sw=Math.sin(d.ph*2.2);c.save();c.globalAlpha=a;c.translate(d.x,d.y+(d.dead?(2-d.dead)*30:0));c.scale(1.45,1.45);
+ c.fillStyle='rgba(0,0,0,.4)';c.beginPath();c.ellipse(0,42,40,10,0,0,7);c.fill();
+ const rock=k?'#fff':'#3a2420',edge=k?'#fff':'#1c100d';
+ const arm=(s)=>{c.save();c.translate(s*22,-8);c.rotate(s*(0.5+sw*0.35));c.fillStyle=rock;c.strokeStyle=edge;c.lineWidth=2;c.beginPath();c.moveTo(-7,0);c.lineTo(7,0);c.lineTo(9,26);c.lineTo(-9,28);c.closePath();c.fill();c.stroke();c.beginPath();c.arc(0,32,9,0,7);c.fill();c.stroke();c.restore()};arm(-1);arm(1);
+ c.fillStyle=rock;c.strokeStyle=edge;c.lineWidth=2;c.beginPath();c.moveTo(-22,-18);c.lineTo(-10,-28);c.lineTo(12,-27);c.lineTo(24,-14);c.lineTo(20,20);c.lineTo(8,32);c.lineTo(-10,31);c.lineTo(-21,18);c.closePath();c.fill();c.stroke();
+ c.beginPath();c.moveTo(-12,-28);c.lineTo(-10,-46);c.lineTo(10,-47);c.lineTo(13,-28);c.closePath();c.fill();c.stroke();
+ c.globalCompositeOperation='lighter';const pulse=0.6+0.4*Math.sin(now*6);c.strokeStyle=`rgba(255,${120+60*pulse|0},30,${0.9})`;c.lineWidth=2.2;c.beginPath();
+ c.moveTo(-14,-14);c.lineTo(-4,-2);c.lineTo(-10,12);c.moveTo(-4,-2);c.lineTo(8,4);c.lineTo(14,-10);c.moveTo(8,4);c.lineTo(4,22);c.moveTo(-8,-34);c.lineTo(6,-40);c.stroke();
+ c.drawImage(glow('#ff7a1a'),-26,-26,52,52);for(const s of [-1,1]){c.drawImage(glow('#ffd23f'),s*5-8,-46,16,16);c.fillStyle='#fff3a0';c.beginPath();c.arc(s*5,-38,2.2,0,7);c.fill()}
+ c.fillStyle=`rgba(255,120,30,${0.5+0.5*pulse})`;c.fillRect(-6,-32,12,2.5);
+ c.restore();bossBar(c,d,'#ff7a1a')}
+function drawUfo(c,now,d){const k=d.hit>0,a=d.dead?Math.max(0,d.dead/2):1;c.save();c.globalAlpha=a;c.translate(d.x,d.y);c.scale(1.2,1.2);if(d.dead)c.scale(1+(2-d.dead)*0.3,1-(2-d.dead)*0.4);
+ if(d.fire>0){c.save();c.globalCompositeOperation='lighter';c.globalAlpha=Math.min(1,d.fire)*a;const bg=c.createLinearGradient(0,8,0,190);bg.addColorStop(0,'rgba(125,252,255,.85)');bg.addColorStop(1,'rgba(125,252,255,0)');c.fillStyle=bg;c.beginPath();c.moveTo(-12,8);c.lineTo(12,8);c.lineTo(46,190);c.lineTo(-46,190);c.closePath();c.fill();
+  c.strokeStyle='rgba(255,255,255,.5)';c.lineWidth=1;for(let i=0;i<4;i++){const yy=20+((now*120+i*42)%170);c.beginPath();c.ellipse(0,yy,12+yy*0.18,3+yy*0.02,0,0,7);c.stroke()}c.restore()}
+ c.fillStyle='rgba(0,0,0,.35)';c.beginPath();c.ellipse(6,48,40,9,0,0,7);c.fill();
+ const dg=c.createRadialGradient(-6,-14,2,0,-8,20);dg.addColorStop(0,k?'#fff':'#d8fbff');dg.addColorStop(1,k?'#fff':'#2aa8c8');c.fillStyle=dg;c.beginPath();c.ellipse(0,-6,16,15,0,Math.PI,0);c.fill();
+ c.fillStyle=k?'#fff':'#5aff8a';c.beginPath();c.arc(0,-9,4,0,7);c.fill();c.fillStyle='#000';for(const s of [-1,1]){c.beginPath();c.arc(s*1.6,-10,1,0,7);c.fill()}
+ const hg=c.createLinearGradient(0,-8,0,10);hg.addColorStop(0,k?'#fff':'#d9def0');hg.addColorStop(1,k?'#fff':'#5a6280');c.fillStyle=hg;c.beginPath();c.ellipse(0,0,40,11,0,0,7);c.fill();c.strokeStyle='#2a2f44';c.lineWidth=1.2;c.stroke();
+ c.fillStyle='#3b4260';c.beginPath();c.ellipse(0,5,22,5,0,0,7);c.fill();
+ c.globalCompositeOperation='lighter';for(let i=0;i<8;i++){const an=now*3+i*Math.PI/4,lx=Math.cos(an)*32,ly=Math.sin(an)*7;if(ly<-1)continue;const col=i%2?'#ff4fd8':'#ffe45c';c.drawImage(glow(col),lx-7,ly-7,14,14);c.fillStyle='#fff';c.beginPath();c.arc(lx,ly,1.6,0,7);c.fill()}
+ c.restore();bossBar(c,d,'#7dfcff')}
+/* ---- Geysers de lave ---- */
+let GEYS=[];
+function geyser(x,y,h=240,dur=1.6){GEYS.push({x,y,h,t:dur,max:dur,seed:Math.random()*9});noise({t:dur*0.8,v:0.3,f:180,f2:900,q:1.2});tone({type:'sawtooth',f:60,f2:120,t:0.6,v:0.12})}
+function geyserUpdate(dt){for(const g of GEYS){g.t-=dt;const p=1-g.t/g.max;if(p<0.75&&Math.random()<0.9)for(let k=0;k<2;k++)parts.push({x:g.x+(Math.random()-0.5)*14,y:g.y-g.h*Math.min(1,p*3)*0.85,vx:(Math.random()-0.5)*260,vy:-200-Math.random()*300,g:900,life:0.9,max:0.9,s:2+Math.random()*3.5,col:Math.random()<0.5?'#ff7a1a':(Math.random()<0.5?'#ffd23f':'#ff3b2f')})}GEYS=GEYS.filter(g=>g.t>0)}
+function drawGeysers(c,now){if(!GEYS.length)return;c.save();c.globalCompositeOperation='lighter';
+ for(const g of GEYS){const p=1-g.t/g.max,grow=Math.min(1,p*4),fade=Math.min(1,g.t/(g.max*0.35)),hh=g.h*grow*(0.85+0.15*Math.sin(now*14+g.seed));
+  c.globalAlpha=fade;c.drawImage(glow('#ff7a1a'),g.x-50,g.y-40,100,80);
+  const gr=c.createLinearGradient(0,g.y,0,g.y-hh);gr.addColorStop(0,'rgba(255,240,170,.95)');gr.addColorStop(0.3,'rgba(255,150,40,.85)');gr.addColorStop(1,'rgba(255,60,20,0)');c.fillStyle=gr;
+  c.beginPath();c.moveTo(g.x-11,g.y);for(let k=0;k<=8;k++){const yy=g.y-hh*k/8;c.lineTo(g.x-11+k*0.6+Math.sin(now*18+k+g.seed)*3,yy)}for(let k=8;k>=0;k--){const yy=g.y-hh*k/8;c.lineTo(g.x+11-k*0.6+Math.sin(now*16+k*1.3+g.seed)*3,yy)}c.closePath();c.fill();
+  c.globalAlpha=fade*0.8;c.drawImage(glow('#ffd23f'),g.x-26,g.y-hh-26,52,52)}
+ c.restore()}
 function misFail(){G.mis=null;G.misCool=1.5;msg('MISSION RATÉE',2);SFX.missionFail()}
 
 /* ================= CRÉATURES (table de Louis) ================= */
@@ -635,25 +672,26 @@ function standHit(o,imp){if(imp<60||o.cd>0)return;o.cd=0.25;if(G.dr)dragonDmg(1,
   if(T.def.blason)blasonQ(0);
   if(T.kicks.length&&T.def.kickBy!=='mission'){T.kicks.forEach(k=>{k.lit=true;k.rt=0});add(5000);msg('KICKBACKS ALLUMÉS',2)}
   else if(o.free){G.mult=Math.min(5,G.mult+1);add(3000);msg(`MULTIPLICATEUR ×${G.mult}`,2)}
-  else{add(10000);msg('ÉRUPTION 10 000',2.2,true);SFX.arp([64,67,71,76],'square',0.06,0.14)}}}
-function dropHit(o,imp){if(o.down||imp<70)return;o.down=true;o.s.off=true;add(750,(o.s.ax+o.s.bx)/2,(o.s.ay+o.s.by)/2-12);G.bonus+=300;SFX.drop();burst((o.s.ax+o.s.bx)/2,(o.s.ay+o.s.by)/2,T.th.a2,10,200);
+  else{add(10000);msg((T.def.geyser?'ÉRUPTION':'CIBLES COMPLÈTES')+' 10 000',2.2,true);if(T.def.geyser)geyser(o.mx+o.nx*30,o.my+o.ny*30,200,1.4);SFX.arp([64,67,71,76],'square',0.06,0.14)}}}
+function dropHit(o,imp){if(o.down||imp<70)return;o.down=true;o.s.off=true;if(G.dr)dragonDmg(1,(o.s.ax+o.s.bx)/2,o.s.ay,'drop');add(750,(o.s.ax+o.s.bx)/2,(o.s.ay+o.s.by)/2-12);G.bonus+=300;SFX.drop();burst((o.s.ax+o.s.bx)/2,(o.s.ay+o.s.by)/2,T.th.a2,10,200);
  if(T.drops.every(d=>d.down)){add(T.def.level===3?20000:10000);msg('BANQUE COMPLÈTE',2.2,true);SFX.arp([60,67,72,79],'square',0.07,0.14);T.dropReset=1.6;misEvent('drops');if(T.def.level===3)G.mult=Math.min(5,G.mult+1)}}
 function bumpHit(bp,b){bp.flash=1;add(100*(1+(G.bumpLv||0)*1.5));G.bonus+=50;SFX.bump();burst(b.x,b.y,T.th.a1,8,300);shake=Math.max(shake,2);misEvent('bump');crBump()}
 function startMultiball(){G.multiball=true;G.autoQ=2;G.autoT=0.9;if(T.def.save>0)G.saveT=Math.max(G.saveT,12);msg('MULTIBALL ! JACKPOT AU '+T.saucer.name,3,true);SFX.multiball();shake=8;flashGI(T.th.a2,2)}
 function rampDone(rp,b){G.rampsMade=(G.rampsMade||0)+1;const combo=rp.combo>0;
  const st=G.rLast!=null&&T.t-G.rLast<RSTREAK?(G.rStreak||0)+1:1;G.rStreak=st;G.rLast=T.t;G.bestStreak=Math.max(G.bestStreak||0,st);
  const p=(rp.pts10||5000)*(G.multiball?3:1)*(combo?2:1)*Math.min(5,st)*(G.frenzyT>0?2:1);add(p,b.x,b.y-20);G.bonus+=1000*Math.min(5,st);rp.flash=1;
- msg(st>=2?`${rp.name} · ENCHAÎNEMENT ×${st}`:(combo?rp.name+' · COMBO ×2':rp.name),1.6,combo||st>=2);if(st>=2)SFX.arp([60+st*2,64+st*2,67+st*2],'square',0.05,0.12);rampStreak(st,b);if(T.def.dragon){if(G.dr)dragonDmg(3,b.x,b.y,'ramp');else if(st>=4){dragonCharge(DR_NEED)}else dragonCharge(1)}SFX.rampOut();flashGI(T.th.ramp,0.5);misEvent('ramp');crStart();if(!T.def.autoMis&&!G.mis&&G.misCool<=0)setTimeout(()=>{if(G&&state==='play'&&!G.mis)misStart()},900)}
+ msg(st>=2?`${rp.name} · ENCHAÎNEMENT ×${st}`:(combo?rp.name+' · COMBO ×2':rp.name),1.6,combo||st>=2);if(st>=2)SFX.arp([60+st*2,64+st*2,67+st*2],'square',0.05,0.12);rampStreak(st,b);if(T.def.geyser&&rp.name==='GEYSER')geyser(rp.mx,rp.my,240,1.6);if(T.def.boss){if(G.dr)dragonDmg(3,b.x,b.y,'ramp');else if(st>=4){dragonCharge(DR_NEED)}else dragonCharge(1)}SFX.rampOut();flashGI(T.th.ramp,0.5);misEvent('ramp');crStart();if(!T.def.autoMis&&!G.mis&&G.misCool<=0)setTimeout(()=>{if(G&&state==='play'&&!G.mis)misStart()},900)}
 function laneHit(i,b){const ln=T.lanes[i];SFX.lane(i);
  if(G.skill!=null){if(i===G.skill){const v=50000*(1+T.def.level*0.5);add(v,ln.x,ln.y+40);msg('SKILL SHOT ! '+fmt(v),2.5,true);SFX.jackpot();flashGI(T.th.a3,1)}G.skill=null}
  if(!ln.lit){ln.lit=true;add(1000,ln.x,ln.y+24);G.bonus+=500}else add(200);
  if(T.lanes.every(l=>l.lit)){G.laneFlash=0.9;if((G.bumpLv||0)<3){G.bumpLv=(G.bumpLv||0)+1;setTimeout(()=>{if(G&&state==='play')msg(`BUMPERS NIVEAU ${G.bumpLv+1}`,1.8)},900)}if(G.mult<5){G.mult++;msg(`MULTIPLICATEUR ×${G.mult}`,2,true)}else{add(25000);msg('SUPER COULOIRS 25 000',2,true)}add(2000);misEvent('lanes');SFX.arp([72,76,79,84],'triangle',0.07,0.2)}}
-function saucerCatch(b){const s=T.saucer;b.cap=s.pull?1.4:1.1;b.capBy=null;b.x=s.x;b.y=s.y;b.vx=b.vy=0;SFX.saucer();shake=3;if(s.pull){noise({t:1.1,v:0.35,f:900,f2:60,q:3});tone({f:300,f2:40,t:1,v:0.3,rev:0.5});s.in=1.4;misEvent('hole');if(G.dr)dragonDmg(3,s.x,s.y,'hole');else if(G.drReady)setTimeout(()=>{if(G&&state==='play'&&!G.dr)dragonStart()},900)}
+function saucerCatch(b){const s=T.saucer;b.cap=s.pull?1.4:1.1;b.capBy=null;b.x=s.x;b.y=s.y;b.vx=b.vy=0;SFX.saucer();shake=3;if(s.pull){noise({t:1.1,v:0.35,f:900,f2:60,q:3});tone({f:300,f2:40,t:1,v:0.3,rev:0.5});s.in=1.4;misEvent('hole')}
+ if(T.def.boss){if(G.dr)dragonDmg(3,s.x,s.y,'hole');else if(G.drReady)setTimeout(()=>{if(G&&state==='play'&&!G.dr)dragonStart()},900)}
  if(isMeadow()&&G.cr.ph==='catch'){crCatch();return}
  if(G.multiball){const j=Math.max(1,T.def.level)*25000;add(j,s.x,s.y-30);msg(`JACKPOT ${fmt(j)}`,2.5,true);SFX.jackpot();burst(s.x,s.y,T.th.a3,30,420);flashGI(T.th.a3,1);return}
  add(2500,s.x,s.y-24);G.bonus+=1000;
  if(!G.mis&&G.misCool<=0)misStart();else if(G.mis)msg(G.mis.txt+` ${G.mis.c}/${G.mis.n}`,1.5)}
-function orbitHit(b){const o=T.orbit,combo=o.combo>0;o.combo=4;add(combo?6000:2000,b.x+20,b.y);msg(combo?'SUPER ORBITE':'ORBITE',1.5);SFX.orbit();burst(b.x,b.y,T.th.a1,10,240);misEvent('orbit');crStart()}
+function orbitHit(b){const o=T.orbit,combo=o.combo>0;if(G.dr)dragonDmg(2,b.x,b.y,'orbit');o.combo=4;add(combo?6000:2000,b.x+20,b.y);msg(combo?'SUPER ORBITE':'ORBITE',1.5);SFX.orbit();burst(b.x,b.y,T.th.a1,10,240);misEvent('orbit');crStart()}
 function rollHit(r,b){r.flash=1;SFX.roll();misEvent('roll');
  if(r.kind==='in'){add(500,r.x,r.y-16);for(const rp of T.ramps)rp.combo=6}else{add(2000,r.x,r.y-16)}}
 
@@ -733,7 +771,7 @@ function update(dt){
  for(const r of T.rolls){r.cd-=dt;r.flash=Math.max(0,r.flash-dt*2)}
  for(const sc of T.scoops){sc.cd-=dt;sc.hold=Math.max(0,sc.hold-dt);sc.flash=Math.max(0,sc.flash-dt*1.5)}for(const l of T.slanes)l.cd-=dt;
  if(G.slFlash>0){G.slFlash-=dt;if(G.slFlash<=0){G.slFlash=0;T.slanes.forEach(l=>l.lit=false)}}
- if(G.superHerse>0)G.superHerse-=dt;if(G.dr)dragonUpdate(dt);if(G.frenzyT>0)G.frenzyT-=dt;if(T.saucer.in>0)T.saucer.in-=dt;
+ if(G.superHerse>0)G.superHerse-=dt;geyserUpdate(dt);if(G.dr)dragonUpdate(dt);if(G.frenzyT>0)G.frenzyT-=dt;if(T.saucer.in>0)T.saucer.in-=dt;
  for(const rp of T.ramps){rp.cd-=dt;rp.boost=Math.max(0,rp.boost-dt*2);rp.flash=Math.max(0,rp.flash-dt*2);rp.combo=Math.max(0,rp.combo-dt)}
  for(const sp of T.spinners){sp.cd-=dt;if(sp.rate>0.2){sp.ph+=sp.rate*dt*Math.PI*2;const half=Math.floor(sp.ph/Math.PI);if(half!==sp.last){sp.last=half;add(100);misEvent('spin',0.5);if(T.t-lastSpin>0.03){lastSpin=T.t;SFX.spin()}}sp.rate*=Math.exp(-1.1*dt)}else sp.rate=0}
  if(G.saveT>0)G.saveT=Math.max(0,G.saveT-dt);
@@ -751,7 +789,7 @@ function update(dt){
  const cr=G.cr;if(cr.ph!=='idle'&&G.wait<=0){cr.t-=dt;if(cr.t<=0){if(cr.ph==='show')G.cr={ph:'idle',k:-1,hits:0,t:0};else{msg('LA CRÉATURE S’EST ENFUIE',2);G.cr={ph:'idle',k:-1,hits:0,t:0}}}}
  if(G.wait>0){G.wait-=dt;if(G.wait<=0)nextBall()}
  if(G.msgs.length){G.msgT+=dt;if(G.msgT>G.msgs[0].d){G.msgs.shift();G.msgT=0}}
- for(const p of parts){p.life-=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=0.94;p.vy*=0.94}parts=parts.filter(p=>p.life>0);
+ for(const p of parts){p.life-=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;if(p.g){p.vy+=p.g*dt;p.vx*=0.995}else{p.vx*=0.94;p.vy*=0.94}}parts=parts.filter(p=>p.life>0);
  for(const f of floats){f.life-=dt;f.y-=40*dt}floats=floats.filter(f=>f.life>0);
  shake=Math.max(0,shake-dt*30);
  if(AU.roll){let sp=0,cnt=0,onR=false;for(const b of G.balls)if(b.cap<=0){if(b.ramp){onR=true;sp+=b.ramp.v}else sp+=Math.hypot(b.vx,b.vy);cnt++}sp=cnt?sp/cnt:0;const c=AU.ctx.currentTime;AU.roll.g.gain.setTargetAtTime(Math.min(0.12,sp/14000)*(cnt?1:0)*(onR?1.6:1),c,0.05);AU.roll.lp.frequency.setTargetAtTime((onR?600:180)+sp*0.35,c,0.05)}
@@ -782,7 +820,7 @@ function updateDMD(){const sc=fmt(G.score);let info,meta='',bar=-1;
  const m=G.msgs[0];
  if(isMeadow()&&G.cr.ph==='hunt'){bar=G.cr.hits/4;meta=`${G.cr.hits}/4 · ${Math.ceil(G.cr.t)} s`}
  else if(isMeadow()&&G.cr.ph==='catch'){bar=1;meta=`${Math.ceil(G.cr.t)} s`}
- else if(G.dr&&!G.dr.dead){bar=G.dr.hp/G.dr.max;meta=`DRAGON ${G.dr.hp}/${G.dr.max} · ${Math.ceil(G.dr.t)} s`}
+ else if(G.dr&&!G.dr.dead){bar=G.dr.hp/G.dr.max;meta=`${(BOSS[G.dr.type]||BOSS.dragon).n} ${G.dr.hp}/${G.dr.max} · ${Math.ceil(G.dr.t)} s`}
  else if(G.rStreak>=2&&T.t-G.rLast<RSTREAK){bar=1-(T.t-G.rLast)/RSTREAK;meta=`COMBO ×${G.rStreak}`}
  else if(G.mis){bar=Math.min(1,G.mis.c/G.mis.n);meta=`${Math.floor(G.mis.c)}/${G.mis.n} · ${Math.ceil(G.mis.t)} s`}
  else if(G.frenzyT>0){bar=G.frenzyT/30;meta=`FRENZY ×2 · ${Math.ceil(G.frenzyT)} s`}
@@ -1006,7 +1044,7 @@ function wantSet(){const want=new Set();if(!G)return want;if(G.mis)want.add(G.mi
  if(isMeadow()&&G.cr.ph==='hunt')want.add('bump');if(isMeadow()&&G.cr.ph==='catch')want.add('saucer');
  if(G.multiball)want.add('saucer');if(!G.mis&&!T.def.autoMis&&G.misCool<=0){want.add('saucer');want.add('ramp')}
  if(isMeadow()&&G.cr.ph==='idle'){want.add('ramp');want.add('orbit')}
- if(G.mis&&G.mis.type==='hole')want.add('saucer');if(G.drReady)want.add('saucer');if(G.dr){want.add('ramp');want.add('herse')}if(G.rStreak>=1&&T.t-G.rLast<RSTREAK&&T.ramps.length)want.add('ramp');return want}
+ if(G.mis&&G.mis.type==='hole')want.add('saucer');if(G.drReady)want.add('saucer');if(G.dr){want.add('ramp');want.add('herse');want.add('orbit')}if(G.rStreak>=1&&T.t-G.rLast<RSTREAK&&T.ramps.length)want.add('ramp');return want}
 function targetPts(want){const P=[];const avg=a=>[a.reduce((s,p)=>s+p[0],0)/a.length,a.reduce((s,p)=>s+p[1],0)/a.length];
  for(const w of want){
   if(w==='ramp')T.ramps.forEach(r=>P.push([r.mx,r.my,46]));
@@ -1079,6 +1117,7 @@ function drawDynamic(c,T,G,layer){
  if(layer==='top'){
   // rampes au-dessus du plateau, puis billes sur rampes
   for(const rp of T.ramps)drawRamp(c,rp,th,now);
+  drawGeysers(c,now);
   if(G&&G.dr)drawDragon(c,now);
   if(G)for(const b of G.balls)if(b.ramp)drawBall(c,b,th);
   // flashers
@@ -1126,7 +1165,7 @@ function drawDynamic(c,T,G,layer){
  // blason
  if(T.def.blason){const bl=T.def.blason,q=G&&G.bq?G.bq:[0,0,0,0];for(let i=0;i<4;i++)if(q[i])drawBlasonQ(c,bl.x,bl.y,i,true,now)}
  // soucoupe
- const s=T.saucer;if(s.pull&&G&&G.drReady){c.save();c.globalCompositeOperation='lighter';c.globalAlpha=0.5+0.4*Math.sin(now*8);c.drawImage(glow('#ff5a1f'),s.x-80,s.y-80,160,160);c.restore();c.save();c.font='700 11px "Chakra Petch", sans-serif';c.textAlign='center';c.fillStyle='#ffb35c';c.fillText('DRAGON',s.x,s.y+s.pull-4);c.restore()}
+ const s=T.saucer;if(T.def.boss&&G&&G.drReady){const bc=BC();c.save();c.globalCompositeOperation='lighter';c.globalAlpha=0.5+0.4*Math.sin(now*8);c.drawImage(glow(bc.col),s.x-80,s.y-80,160,160);c.restore();c.save();c.font='700 11px "Chakra Petch", sans-serif';c.textAlign='center';c.fillStyle=bc.col;c.fillText(bc.n,s.x,s.y+(s.pull||22)+6);c.restore()}
  if(s.pull){c.save();c.translate(s.x,s.y);const hp=s.pull*0.86,sp=now*(s.in>0?7:2.2);
   c.globalCompositeOperation='lighter';for(let k=0;k<5;k++){c.strokeStyle=k%2?th.a1:th.a2;c.globalAlpha=(s.in>0?0.75:0.4);c.lineWidth=2.4;c.beginPath();for(let a=0;a<4.6;a+=0.12){const rr=hp-a*hp/4.9,ang=sp+k*Math.PI*2/5+a*1.1;c.lineTo(Math.cos(ang)*rr,Math.sin(ang)*rr*0.9)}c.stroke()}
   c.globalAlpha=0.6+0.3*Math.sin(now*5);c.strokeStyle='#fff3c0';c.lineWidth=1.5;c.beginPath();c.arc(0,0,17,0,7);c.stroke();c.restore();
@@ -1277,7 +1316,7 @@ document.querySelectorAll('.lg').forEach(b=>b.onclick=()=>{LANG=b.dataset.lang;t
 
 
 function snapSave(){try{if(state!=='play'||!G||!T)return;const bs=G.balls.filter(b=>!b.gone).map(b=>({x:b.x,y:b.y,vx:b.vx,vy:b.vy,cap:b.cap,live:b.live,noSave:b.noSave,ramp:b.ramp?{i:T.ramps.indexOf(b.ramp.rp),s:b.ramp.s,v:b.ramp.v}:null}));
- const g={};for(const k of ['score','ball','bonus','mult','saveT','multiball','extra','extraGiven','misDone','misIdx','mis','misCool','cr','caught','bumpLv','autoQ','autoT','wait','rampsMade','bestStreak','frenzyGiven','frenzyT','bq','blv','herseN','superHerse','drQ','drReady','drLv','drBeat'])g[k]=G[k];
+ const g={};for(const k of ['score','ball','bonus','mult','saveT','multiball','extra','extraGiven','misDone','misIdx','mis','misCool','cr','caught','bumpLv','autoQ','autoT','wait','rampsMade','bestStreak','frenzyGiven','frenzyT','bq','blv','herseN','superHerse','extraN','drQ','drReady','drLv','drBeat'])g[k]=G[k];
  localStorage.setItem('odyssee-snap',JSON.stringify({v:1,id:T.def.id,ts:Date.now(),g,bs,lanes:T.lanes.map(l=>l.lit),drops:T.drops.map(d=>d.down),stands:T.standups.map(o=>o.lit),kicks:T.kicks.map(k=>[k.lit,k.rt])}))}catch(e){}}
 function snapClear(){try{localStorage.removeItem('odyssee-snap')}catch(e){}}
 function snapLoad(){try{const d=JSON.parse(localStorage.getItem('odyssee-snap')||'null');if(!d||d.v!==1||Date.now()-d.ts>12*3600e3)return false;const def=TABLES.find(x=>x.id===d.id);if(!def)return false;
@@ -1312,7 +1351,7 @@ requestAnimationFrame(frame);
 let WL=null;async function wakeOn(){try{if('wakeLock' in navigator&&!WL){WL=await navigator.wakeLock.request('screen');WL.addEventListener('release',()=>{WL=null})}}catch(e){WL=null}}
 function wakeOff(){try{if(WL)WL.release()}catch(e){}WL=null}
 setInterval(()=>{if(state==='play'&&!paused&&!document.hidden)wakeOn();else wakeOff()},2000);
-window.PB={start:i=>startGame(TABLES[i]),get G(){return G},get T(){return T},get paused(){return paused},setFlip,setPlunger,update:dt=>update(dt),setGrav};
+window.PB={start:i=>startGame(TABLES[i]),get G(){return G},get T(){return T},get paused(){return paused},get state(){return state},setFlip,setPlunger,update:dt=>update(dt),setGrav};
 }
 </script>
 <script>
