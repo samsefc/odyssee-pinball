@@ -280,7 +280,7 @@ const TABLES=[
   spinners:[{x:58,y:300,w:44,noPosts:true}],
   ramps:[
    {pts:[[166,482],[160,424],[164,350],[176,290],[160,230],[176,170],[230,140],[290,140],[340,170],[392,232],[430,330],[434,440],[424,540],[399,650],[393,732]],alt:[[166,482],[160,424],[164,350],[170,290],[150,220],[142,150],[154,96],[176,70],[200,62]],w:40,min:200,exitSpd:380,name:'COULÉE DE LAVE',pts10:6000},
-   {pts:[[342,476],[363,424],[384,350],[400,280],[372,214],[310,178],[240,170],[175,195],[128,260],[102,350],[88,450],[80,560],[69,650],[75,732]],alt:[[342,476],[363,424],[384,350],[396,280],[382,204],[352,132],[318,88],[292,66],[268,62]],w:38,min:200,exitSpd:380,name:'GEYSER',pts10:8000}]},
+   {pts:[[342,476],[363,424],[384,350],[400,280],[372,214],[310,178],[240,170],[175,195],[128,260],[102,350],[88,450],[80,560],[69,650],[75,732]],w:38,min:200,exitSpd:380,name:'GEYSER',pts10:8000}]},
 
  {id:'castle',amb:0.5,name:'Château fort',diff:'Moyen',level:2,logoY:652,balls:3,save:10,po:88,ow:28,centerPost:false,kickback:true,kickRe:60,kickBy:'stand',extraAt:500000,letters:['R','O','I'],mtime:75,mscale:1.2,font:'Cinzel',
   ranks:['Écuyer','Chevalier','Baron','Comte','Duc','Roi'],
@@ -295,7 +295,7 @@ const TABLES=[
   blason:{x:234,y:548},boss:'dragon',
   ramps:[
    {pts:[[156,488],[152,440],[148,406],[136,384],[118,382],[104,402],[96,460],[90,540],[78,650],[71,732]],alt:[[156,488],[152,440],[148,380],[144,300],[146,220],[154,150],[172,92],[198,64]],w:40,min:150,exitSpd:380,name:'PONT-LEVIS',pts10:6000},
-   {pts:[[138,322],[142,272],[156,236],[190,200],[234,186],[280,196],[320,226],[350,270],[374,320],[394,380],[404,460],[404,540],[403,650],[397,732]],alt:[[138,322],[142,272],[146,200],[154,130],[174,84],[200,64]],w:38,min:150,exitSpd:380,name:'DONJON',pts10:8000}]},
+   {pts:[[138,322],[142,272],[156,236],[190,200],[234,186],[280,196],[320,226],[350,270],[374,320],[394,380],[404,460],[404,540],[403,650],[397,732]],w:38,min:150,exitSpd:380,name:'DONJON',pts10:8000}]},
  {id:'abyss',amb:0.5,name:'Abysses',diff:'Difficile',level:3,balls:3,save:0,po:97,ow:40,centerPost:false,kickback:true,kickRe:90,kickBy:'mission',extraAt:0,letters:['M','E','R'],mtime:50,mscale:1.6,boss:'kraken',
   ranks:['Mousse','Plongeur','Explorateur','Capitaine','Légende des abysses'],
   missions:['ramp','orbit','drops','bump','spin','stand','lanes'],
@@ -325,7 +325,7 @@ const TABLES=[
   blason:{x:234,y:548},
   ramps:[
    {pts:[[312,488],[316,440],[320,406],[332,384],[350,382],[364,402],[372,460],[378,540],[390,650],[389,732]],alt:[[312,488],[316,440],[320,380],[324,300],[322,220],[314,150],[296,92],[270,64]],w:40,min:300,exitSpd:400,name:'LIANES',pts10:8000},
-   {pts:[[330,322],[326,272],[312,236],[278,200],[234,186],[188,196],[148,226],[118,270],[94,320],[74,380],[64,460],[64,540],[65,650],[79,732]],alt:[[330,322],[326,272],[322,200],[314,130],[294,84],[268,64]],w:38,min:300,exitSpd:400,name:'ESCALIER SACRÉ',pts10:10000}]},
+   {pts:[[330,322],[326,272],[312,236],[278,200],[234,186],[188,196],[148,226],[118,270],[94,320],[74,380],[64,460],[64,540],[65,650],[79,732]],w:38,min:300,exitSpd:400,name:'ESCALIER SACRÉ',pts10:10000}]},
 ];
 
 /* ================= CONSTRUCTION D'UNE TABLE ================= */
@@ -387,7 +387,7 @@ for(const w of def.walls||[])poly(w,{e:0.4});
  }
  T.dropReset=0;
  T.saucer={...def.saucer,cd:0,spin:0};
- if(def.orbit){poly(def.orbit.wall,{e:0.32});T.orbitGate=oneWay(def.orbit.gate[0],def.orbit.gate[1],true);T.posts.push({x:122,y:352,r:5,e:0.5});T.orbit={x:def.orbit.sensor[0],y:def.orbit.sensor[1],cd:0,combo:0}}
+ if(def.orbit){const dfl=seg(330,40,342,78,{oneWay:true,e:0.75});dfl.nx=-0.953;dfl.ny=0.301;T.defl=dfl;poly(def.orbit.wall,{e:0.32});T.orbitGate=oneWay(def.orbit.gate[0],def.orbit.gate[1],true);T.posts.push({x:122,y:352,r:5,e:0.5});T.orbit={x:def.orbit.sensor[0],y:def.orbit.sensor[1],cd:0,combo:0}}
  if(def.kickback){const kx=(23+xg-3)/2;T.kicks=[{x:kx,y:872+DY,lit:true,cd:0,rt:0},{x:2*CX-kx,y:872+DY,lit:true,cd:0,rt:0}]}else T.kicks=[];
  // spinners
  T.spinners=(def.spinners||[]).map(s=>({...s,ph:0,rate:0,cd:0,last:0}));
@@ -763,7 +763,7 @@ function colFlip(b,f){const ex=f.px+Math.cos(f.th)*f.len,ey=f.py+Math.sin(f.th)*
 function rampPos(rp,s){const c=rp.cum;let i=1;while(i<c.length-1&&c[i]<s)i++;const t=(s-c[i-1])/((c[i]-c[i-1])||1),a=rp.P[i-1],b=rp.P[i];return[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t]}
 function rampRide(b,h){const r=b.ramp,rp=r.rp,g=r.g||rp;r.v=Math.max(900,Math.min(1600,r.v-(r.s<g.len*0.45?350:-450)*h));r.s+=r.v*h;
  if(r.s>=g.len){const P=g.P,a=P[P.length-3],c=P[P.length-1],dx=c[0]-a[0],dy=c[1]-a[1],l=Math.hypot(dx,dy)||1;b.x=c[0];b.y=c[1];b.vx=dx/l*g.exitSpd;b.vy=dy/l*g.exitSpd;b.ramp=null;rampDone(rp,b);
-  if(rp.A){if(r.g)msg('DIRECTION LES COULOIRS !',1.4);rp.div=!rp.div}return}
+  if(rp.A){if(r.g){msg('DIRECTION LES COULOIRS !',1.4);rp.div=false}else rp.div=true}return}
  const p=rampPos(g,r.s);b.vx=(p[0]-b.x)/h;b.vy=(p[1]-b.y)/h;b.x=p[0];b.y=p[1];r.z=rampZ(g,r.s)}
 function rampZ(rp,s){const c=rp.cum;let i=1;while(i<c.length-1&&c[i]<s)i++;const t=(s-c[i-1])/((c[i]-c[i-1])||1);return rp.Z[i-1]+(rp.Z[i]-rp.Z[i-1])*t}
 
@@ -795,7 +795,7 @@ function step(h){
   for(const sp of T.spinners)if(sp.cd<=0&&Math.abs(b.x-sp.x)<sp.w/2+2&&Math.abs(b.y-sp.y)<9&&Math.abs(b.vy)>120){sp.cd=0.18;sp.rate=Math.min(26,Math.abs(b.vy)/55)}
   for(const r of T.rolls)if(r.cd<=0&&Math.abs(b.x-r.x)<13&&Math.abs(b.y-r.y)<12){r.cd=0.8;rollHit(r,b)}
   for(const rp of T.ramps){if(rp.cd>0)continue;const rx=b.x-rp.mx,ry=b.y-rp.my,al=rx*rp.dir[0]+ry*rp.dir[1],ac=rx*rp.pr[0]+ry*rp.pr[1];
-   if(Math.abs(ac)<rp.w/2+2&&al>-8&&al<14){const va=b.vx*rp.dir[0]+b.vy*rp.dir[1];if(va>rp.min){rp.cd=0.35;rp.boost=1;b.ramp={rp,g:rp.A&&rp.div?rp.A:null,s:0,v:Math.max(1300,Math.min(1600,va)),z:0};b.x=rp.mx;b.y=rp.my;SFX.rampIn()}else if(va>40){rp.cd=0.35;b.vx-=rp.dir[0]*va*1.3;b.vy-=rp.dir[1]*va*1.3;SFX.wall(500);msg('PRESQUE ! PLUS FORT',1)}}}
+   if(Math.abs(ac)<rp.w/2+2&&al>-8&&al<14){const va=b.vx*rp.dir[0]+b.vy*rp.dir[1];if(va>rp.min){rp.cd=0.35;rp.boost=1;b.ramp={rp,g:rp.A&&rp.div&&!(G.rLast!=null&&T.t-G.rLast<RSTREAK)?rp.A:null,s:0,v:Math.max(1300,Math.min(1600,va)),z:0};b.x=rp.mx;b.y=rp.my;SFX.rampIn()}else if(va>40){rp.cd=0.35;b.vx-=rp.dir[0]*va*1.3;b.vy-=rp.dir[1]*va*1.3;SFX.wall(500);msg('PRESQUE ! PLUS FORT',1)}}}
   if(!b.live&&b.x<444){b.live=true;G.skillT=4;if(!b.noSave&&T.def.save>0)G.saveT=T.def.save}
   const v=Math.hypot(b.vx,b.vy);if(v>MAXV){b.vx*=MAXV/v;b.vy*=MAXV/v}
   if(b.y>H+40||b.x<-40||b.x>W+40||b.y<-60)b.gone=true;
@@ -1234,6 +1234,8 @@ function drawDynamic(c,T,G,layer){
   c.restore();if(cr.ph!=='idle'){c.save();c.globalCompositeOperation='lighter';c.globalAlpha=0.35+0.25*Math.sin(now*6);c.drawImage(glow(th.a1),w.x-70,w.y-70,140,140);c.restore()}}
  if(T.whirl){const w=T.whirl;c.save();c.translate(w.x,w.y);const g=c.createRadialGradient(0,0,4,0,0,w.r);g.addColorStop(0,'rgba(0,10,20,.9)');g.addColorStop(0.7,shade(th.a1,-120)+'cc');g.addColorStop(1,'rgba(0,0,0,0)');c.fillStyle=g;c.beginPath();c.arc(0,0,w.r,0,7);c.fill();
   c.globalCompositeOperation='lighter';for(let k=0;k<4;k++){c.strokeStyle=k%2?th.a1:th.a2;c.globalAlpha=w.in>0?0.8:0.45;c.lineWidth=2.5;c.beginPath();for(let a=0;a<4.2;a+=0.15){const rr=4+a*w.r/4.6,ang=-w.ph+k*Math.PI/2+a;c.lineTo(Math.cos(ang)*rr,Math.sin(ang)*rr)}c.stroke()}c.restore()}
+ // déflecteur de l'orbite vers les couloirs
+ if(T.defl){c.save();c.strokeStyle=th.rubber;c.lineWidth=6;c.lineCap='round';c.beginPath();c.moveTo(330,40);c.lineTo(342,78);c.stroke();c.strokeStyle='rgba(255,255,255,.5)';c.lineWidth=1.5;c.beginPath();c.moveTo(329,42);c.lineTo(340,77);c.stroke();c.fillStyle='#e8edf6';for(const [px,py] of [[330,40],[342,78]]){c.beginPath();c.arc(px,py,3.5,0,7);c.fill()}c.restore()}
  // herse
  for(const sc of T.scoops){const a=Math.atan2(sc.d[1],sc.d[0]);c.save();c.translate(sc.M[0]+sc.d[0]*6,sc.M[1]+sc.d[1]*6);c.rotate(a);
   const down=sc.hold>0?1:0.25,hw=sc.hw;c.fillStyle='rgba(0,0,0,.45)';c.fillRect(-4,-hw,8,hw*2);
