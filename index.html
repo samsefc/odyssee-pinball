@@ -557,22 +557,23 @@ const MUS={
  abyss:{bpm:78,prog:[[50,'m'],[55,'M'],[53,'M'],[57,'m']],arp:'triangle',bass:'sine',arpPat:[1,0,0,1,0,0,1,0,0,0,1,0,1,0,0,0],hat:0,kick:false,pad:true,arpV:0.07}
 };
 const MZ={step:0,next:0,timer:0};
-const TRACKS={meadow:{src:'music/meadow.m4a',start:4.086712,end:125.352925},nebula:{src:'music/nebula.m4a',start:88.572517,end:167.787392},volcan:{src:'music/volcan.m4a',start:72.364989,end:158.069841},castle:{src:'music/castle.m4a',start:55.356372,end:148.433560},abyss:{src:'music/abyss.m4a',start:28.026485,end:141.339864}};
+const TRACKS={menu:{src:'music/menu.m4a',start:0,end:0},meadow:{src:'music/meadow.m4a',start:4.086712,end:125.352925},nebula:{src:'music/nebula.m4a',start:88.572517,end:167.787392},volcan:{src:'music/volcan.m4a',start:72.364989,end:158.069841},castle:{src:'music/castle.m4a',start:55.356372,end:148.433560},abyss:{src:'music/abyss.m4a',start:28.026485,end:141.339864}};
 function mvol(){return (SAVE.mvol??50)/100}
-function trackWanted(){return !!(AU.ctx&&AU.music&&SAVE.musMode!=='synth'&&T&&TRACKS[T.def.id]&&state==='play')}
+function trackCur(){return state==='play'&&T&&TRACKS[T.def.id]?T.def.id:(state==='menu'?'menu':null)}
+function trackWanted(){return !!(AU.ctx&&AU.music&&SAVE.musMode!=='synth'&&trackCur())}
 function trackLoad(id){const tr=TRACKS[id];if(AU.trkBuf[id])return Promise.resolve(AU.trkBuf[id]);if(AU.trkLoading&&AU.trkLoading.id===id)return AU.trkLoading.p;
  const p=fetch(tr.src).then(r=>{if(!r.ok)throw 0;return r.arrayBuffer()}).then(ab=>new Promise((res,rej)=>AU.ctx.decodeAudioData(ab,res,rej))).then(buf=>{AU.trkBuf[id]=buf;AU.trkLoading=null;return buf}).catch(()=>{AU.trkLoading=null;AU.trkFail=id;return null});AU.trkLoading={id,p};return p}
 function trackStop(){if(AU.trkSrc){const s=AU.trkSrc,c=AU.ctx;try{AU.trk.gain.cancelScheduledValues(c.currentTime);AU.trk.gain.setTargetAtTime(0,c.currentTime,0.08);s.stop(c.currentTime+0.4)}catch(e){}}AU.trkSrc=null;AU.trkId=null;AU.trkTgt=-1}
 function dropUpdate(){if(!AU.tLP)return;const c=AU.ctx;
  if(G&&G.musDrop&&state==='play'){if(G.balls.some(b=>b.live&&b.x<446)||G.multiball)G.musDrop=false}
- const on=!!(G&&G.musDrop&&state==='play');if(on===AU.dropOn)return;AU.dropOn=on;const f=on?420:20000,tc=on?0.09:0.22;
+ const on=!!(state==='play'&&(paused||(G&&G.musDrop)));if(on===AU.dropOn)return;AU.dropOn=on;const f=on?420:20000,tc=on?0.09:0.22;
  for(const n of [AU.tLP,AU.mLP]){n.frequency.cancelScheduledValues(c.currentTime);n.frequency.setTargetAtTime(f,c.currentTime,tc)}
  if(!on&&AU.trkSrc){noise({t:0.5,v:0.18,f:400,f2:6000,q:1.2})}}
 function trackUpdate(){if(!AU.ctx)return;dropUpdate();const want=trackWanted();
  if(!want){if(AU.trkSrc)trackStop();return}
- const id=T.def.id;if(AU.trkFail===id)return;
- if(AU.trkId!==id){if(AU.trkSrc)trackStop();AU.trkId=id;trackLoad(id).then(buf=>{if(!buf||!trackWanted()||T.def.id!==id||AU.trkId!==id||AU.trkSrc)return;const tr=TRACKS[id],c=AU.ctx,s=c.createBufferSource();s.buffer=buf;s.loop=true;s.loopStart=tr.start;s.loopEnd=Math.min(tr.end,buf.duration);s.connect(AU.tLP);AU.trk.gain.setValueAtTime(0,c.currentTime);s.start(c.currentTime+0.05,0);AU.trkSrc=s;AU.trkTgt=-1});return}
- if(!AU.trkSrc)return;const tgt=0.6*mvol()*(paused?0.55:1)*(AU.dropOn?0.72:1);if(Math.abs(tgt-AU.trkTgt)>0.001){AU.trkTgt=tgt;AU.trk.gain.setTargetAtTime(tgt,AU.ctx.currentTime,0.12)}}
+ const id=trackCur();if(AU.trkFail===id)return;
+ if(AU.trkId!==id){if(AU.trkSrc)trackStop();AU.trkId=id;trackLoad(id).then(buf=>{if(!buf||!trackWanted()||trackCur()!==id||AU.trkId!==id||AU.trkSrc)return;const tr=TRACKS[id],c=AU.ctx,s=c.createBufferSource();s.buffer=buf;s.loop=true;s.loopStart=tr.start;s.loopEnd=tr.end>0?Math.min(tr.end,buf.duration):buf.duration;s.connect(AU.tLP);AU.trk.gain.setValueAtTime(0,c.currentTime);s.start(c.currentTime+0.05,0);AU.trkSrc=s;AU.trkTgt=-1});return}
+ if(!AU.trkSrc)return;const tgt=0.6*mvol()*(paused?0.6:AU.dropOn?0.72:1);if(Math.abs(tgt-AU.trkTgt)>0.001){AU.trkTgt=tgt;AU.trk.gain.setTargetAtTime(tgt,AU.ctx.currentTime,0.12)}}
 function trackOn(){return !!AU.trkSrc}
 function musicStart(){if(!AU.ctx)return;clearInterval(MZ.timer);MZ.step=0;MZ.next=AU.ctx.currentTime+0.15;MZ.timer=setInterval(musTick,25)}
 function musicStop(){clearInterval(MZ.timer);MZ.timer=0}
