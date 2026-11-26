@@ -1,5 +1,5 @@
 // Odyssée Pinball — service worker (hors ligne + mises à jour)
-const VERSION = 'odyssee-v12';
+const VERSION = 'odyssee-v13';
 const SHELL = ['./', './index.html', './manifest.webmanifest',
   './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-512.png', './icons/apple-touch-icon.png'];
 
@@ -16,7 +16,7 @@ self.addEventListener('fetch', e => {
   const url = new URL(req.url);
   // Page du jeu : réseau d'abord (pour recevoir les nouvelles tables), cache si hors ligne
   if (req.mode === 'navigate' || url.pathname.endsWith('/index.html')) {
-    e.respondWith(fetch(req).then(r => { const c = r.clone(); caches.open(VERSION).then(x => x.put('./index.html', c)); return r; })
+    e.respondWith(fetch(url.href, {cache: 'no-store'}).then(r => { const c = r.clone(); caches.open(VERSION).then(x => x.put('./index.html', c)); return r; })
       .catch(() => caches.match('./index.html')));
     return;
   }
