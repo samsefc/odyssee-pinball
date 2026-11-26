@@ -911,7 +911,7 @@ function onDrain(b){
  if(G.autoQ>0)return;
  if(G.saveT>0&&b.live&&!b.noSave){G.saveT=0;msg('BILLE SAUVÉE !',2,true);SFX.save();const nb=serve();nb.noSave=true;return}
  if(!b.live){serve();return}
- G.multiball=false;G.rStreak=0;if(G.dr){G.dr=null;G.drQ=Math.floor(DR_NEED/2)}SFX.drain();const bonus=G.bonus*G.mult;
+ G.multiball=false;G.rStreak=0;G.scStreak=0;if(G.dr){G.dr=null;G.drQ=Math.floor(DR_NEED/2)}SFX.drain();const bonus=G.bonus*G.mult;
  msg(`BONUS ${fmt(G.bonus)} × ${G.mult}`,2.4);G.score+=bonus;G.wait=2.6;
 }
 function nextBall(){G.ball++;if(G.ball>T.def.balls+G.extra){gameOver();return}
@@ -926,11 +926,12 @@ function gameOver(){snapClear();state='over';SFX.over();if(AU.roll)AU.roll.g.gai
 /* ================= DMD ================= */
 let dmdLast='';
 function updateDMD(){const sc=fmt(G.score);let info,meta='',bar=-1;
- const m=G.msgs[0];
+ const m=G.msgs[0];const scA=G.scStreak>=2&&G.scLast!=null&&T.t-G.scLast<8,scN=T.scoops.length?nm(T.scoops[0].name):'';
  if(isMeadow()&&G.cr.ph==='hunt'){bar=G.cr.hits/4;meta=`${G.cr.hits}/4 · ${Math.ceil(G.cr.t)} s`}
  else if(isMeadow()&&G.cr.ph==='catch'){bar=1;meta=`${Math.ceil(G.cr.t)} s`}
  else if(G.dr&&!G.dr.dead){bar=G.dr.hp/G.dr.max;meta=`${(BOSS[G.dr.type]||BOSS.dragon).n} ${G.dr.hp}/${G.dr.max} · ${Math.ceil(G.dr.t)} s`}
- else if(G.rStreak>=2&&T.t-G.rLast<RSTREAK){bar=1-(T.t-G.rLast)/RSTREAK;meta=`COMBO ×${G.rStreak}`}
+ else if(G.rStreak>=2&&T.t-G.rLast<RSTREAK){bar=1-(T.t-G.rLast)/RSTREAK;meta=`COMBO ×${G.rStreak}`+(scA?` · ${scN} ×${G.scStreak}`:'')}
+ else if(scA){bar=1-(T.t-G.scLast)/8;meta=`${scN} ×${G.scStreak}`}
  else if(G.mis){bar=Math.min(1,G.mis.c/G.mis.n);meta=`${Math.floor(G.mis.c)}/${G.mis.n} · ${Math.ceil(G.mis.t)} s`}
  else if(G.frenzyT>0){bar=G.frenzyT/30;meta=`FRENZY ×2 · ${Math.ceil(G.frenzyT)} s`}
  if(m)info=m.t;
