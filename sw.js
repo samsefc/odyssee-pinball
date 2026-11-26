@@ -1,5 +1,5 @@
 // Odyssée Pinball — service worker (hors ligne + mises à jour)
-const VERSION = 'odyssee-v20';
+const VERSION = 'odyssee-v21';
 const SHELL = ['./', './index.html', './manifest.webmanifest',
   './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-512.png', './icons/apple-touch-icon.png', './music/volcan.m4a', './music/meadow.m4a', './music/nebula.m4a', './music/castle.m4a', './music/abyss.m4a'];
 
