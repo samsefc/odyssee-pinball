@@ -1,7 +1,7 @@
 // Odyssée Pinball — service worker (hors ligne + mises à jour)
-const VERSION = 'odyssee-v15';
+const VERSION = 'odyssee-v16';
 const SHELL = ['./', './index.html', './manifest.webmanifest',
-  './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-512.png', './icons/apple-touch-icon.png'];
+  './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-512.png', './icons/apple-touch-icon.png', './music/volcan.m4a'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
@@ -26,5 +26,5 @@ self.addEventListener('fetch', e => {
     return;
   }
   // Le reste : cache d'abord
-  e.respondWith(caches.match(req).then(hit => hit || fetch(req)));
+  e.respondWith(caches.match(req).then(hit => hit || fetch(req).then(r => { if (r.ok && url.pathname.includes('/music/')) { const c = r.clone(); caches.open(VERSION).then(x => x.put(req, c)); } return r; })));
 });
