@@ -185,7 +185,7 @@ function applyLang(){document.documentElement.lang=LANG;document.querySelectorAl
 /* ================= CONSTANTES PHYSIQUES (identiques pour toutes les tables) ================= */
 const W=500,DY=140,H=940+DY,GRAV=1500,MAXV=2900;let R=11,TGS=1;
 const FL_LEN=72,FL_R1=11,FL_R2=6,FL_REST=0.5,FL_UP=-0.42,FL_UPSPD=32,FL_DNSPD=20,FL_E=0.28;
-const SLING_KICK=640,BUMP_OUT=980,PLUNGE_MIN=1800,PLUNGE_MAX=2450;
+const SLING_KICK=640,BUMP_OUT=980,PLUNGE_MIN=1350,PLUNGE_MAX=2050;
 const CX=234,LANE_X=464,PLUNGER_Y=900+DY,RSTREAK=6;
 const $=id=>document.getElementById(id);
 const cv=$('cv'),ctx=cv.getContext('2d');
@@ -898,7 +898,7 @@ function step(h){
 
 function update(dt){
  const n=Math.max(1,Math.ceil(dt/0.0018)),h=dt/n;for(let i=0;i<n;i++)step(h);
- if(G.pulling){const was=G.pull;G.pull=Math.min(1,G.pull+dt/0.85);if(Math.floor(was*6)!==Math.floor(G.pull*6))SFX.pull()}
+ if(G.pulling){const was=G.pull;G.pull=Math.min(1,G.pull+dt/1.1);if(Math.floor(was*6)!==Math.floor(G.pull*6))SFX.pull()}
  for(const b of G.balls)if(b.cap>0){b.cap-=dt;if(b.cap<=0){const s=b.capBy||T.saucer;b.cap=0;b.capBy=null;if(s.scoop){scoopEject(s,b);continue}b.x=s.x;b.y=s.y;b.vx=s.ex+(Math.random()-0.5)*80;b.vy=s.ey+(Math.random()-0.5)*80;s.cd=0.5;if(s.keepEj)s.cd=0.9;if(s.pull&&!s.keepEj){const a=-Math.PI/2+(Math.random()-0.5)*2.2;b.vx=Math.cos(a)*950;b.vy=Math.sin(a)*950;s.cd=0.9}SFX.eject();burst(s.x,s.y,T.th.a1,12,260)}}
  const lost=G.balls.filter(b=>b.gone);if(lost.length){G.balls=G.balls.filter(b=>!b.gone);for(const b of lost)onDrain(b)}
  for(const b of G.balls){if(b.cap>0||b.ramp||(b.x>448&&b.y>600)){b.still=0;continue}if(Math.hypot(b.vx,b.vy)<12)b.still+=dt;else b.still=0;if(b.still>3){b.still=0;b.vx=(Math.random()-0.5)*500;b.vy=-500}}
@@ -1484,7 +1484,7 @@ function setFlip(i,on){if(state!=='play'||paused||!T)return;const f=T.flippers[i
  if(on){SFX.flip();if(G&&!G.laneFlash){const l=T.lanes.map(l=>l.lit);if(i===0)l.push(l.shift());else l.unshift(l.pop());T.lanes.forEach((ln,k)=>ln.lit=l[k])}}else SFX.flipDn()}
 function setPlunger(on){if(state!=='play'||paused||!G)return;const inLane=G.balls.some(b=>b.x>448&&b.y>PLUNGER_Y-80&&b.cap<=0);
  if(on){if(inLane&&!G.pulling)G.pulling=true}
- else if(G.pulling){G.pulling=false;const p=G.pull;for(const b of G.balls)if(b.x>448&&b.y>PLUNGER_Y-60){b.y=Math.min(b.y,PLUNGER_Y-R-3);b.vy=-(PLUNGE_MIN+p*(PLUNGE_MAX-PLUNGE_MIN))*Math.sqrt(GMUL);b.vx=0}if(p>0.02)SFX.launch(p);G.pull=0}}
+ else if(G.pulling){G.pulling=false;const p=G.pull;for(const b of G.balls)if(b.x>448&&b.y>PLUNGER_Y-60){b.y=Math.min(b.y,PLUNGER_Y-R-3);b.vy=-(PLUNGE_MIN+p*(PLUNGE_MAX-PLUNGE_MIN))*Math.sqrt(GMUL*TGS);b.vx=0}if(p>0.02)SFX.launch(p);G.pull=0}}
 const KL=['ArrowLeft','KeyZ','ShiftLeft','KeyA'],KR=['ArrowRight','KeyM','ShiftRight','Slash','KeyL'],KP=['Space','ArrowDown','Enter'];
 addEventListener('keydown',e=>{if(e.repeat)return;const k=e.code;
  if(KL.includes(k)){setFlip(0,true);e.preventDefault()}
