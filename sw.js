@@ -1,7 +1,7 @@
 // Odyssée Pinball — service worker (hors ligne + mises à jour)
-const VERSION = 'odyssee-v21';
+const VERSION = 'odyssee-v22';
 const SHELL = ['./', './index.html', './manifest.webmanifest',
-  './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-512.png', './icons/apple-touch-icon.png', './music/volcan.m4a', './music/meadow.m4a', './music/nebula.m4a', './music/castle.m4a', './music/abyss.m4a'];
+  './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-512.png', './icons/apple-touch-icon.png', './music/volcan.m4a', './music/meadow.m4a', './music/nebula.m4a', './music/castle.m4a', './music/abyss.m4a', './music/temple.m4a', './music/pyramid.m4a'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
